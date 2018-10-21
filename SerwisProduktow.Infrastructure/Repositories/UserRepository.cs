@@ -16,6 +16,10 @@ namespace SerwisProduktow.Infrastructure.Repositories
         {
             this.users = dBUserRepository;
         }
+        protected UserRepository()
+        {
+
+        }
 
         public void ChangePassword(int userID, string currentPassword, string newPassword)
         {

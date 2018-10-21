@@ -24,7 +24,7 @@ namespace SerwisProduktow.Domain.Entities
             SetContent(content);
             IDUser = user.ID;
             UserName = user.Login;
-            DateOfAddition = DateTime.UtcNow;
+            DateOfAddition = DateTime.Now;
         }
 
         public void SetContent(string content)

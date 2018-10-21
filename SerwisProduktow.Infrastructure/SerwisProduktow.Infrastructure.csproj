@@ -97,8 +97,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="DTO\CategoryDto.cs" />
     <Compile Include="DTO\CommentDto.cs" />
     <Compile Include="DTO\RatingDto.cs" />

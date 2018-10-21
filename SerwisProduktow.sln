@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerwisProduktow.Domain", "SerwisProduktow.Domain\SerwisProduktow.Domain.csproj", "{AF4554EA-0C2D-42D3-B833-9694614C1506}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerwisProduktow.WebUI", "SerwisProduktow.WebUI\SerwisProduktow.WebUI.csproj", "{05E08908-AA45-429F-B7F7-C799CDFB300F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4945550B-DEB5-470C-98B1-452800900A61} = {4945550B-DEB5-470C-98B1-452800900A61}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerwisProduktow.Infrastructure", "SerwisProduktow.Infrastructure\SerwisProduktow.Infrastructure.csproj", "{4945550B-DEB5-470C-98B1-452800900A61}"
 EndProject

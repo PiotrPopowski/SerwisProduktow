@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SerwisProduktow.Domain.Entities
 {
@@ -13,10 +9,17 @@ namespace SerwisProduktow.Domain.Entities
         public int ID { get; protected set; }
         public string Login { get; protected set; }
         public string Password { get; protected set; }
-        public Role Role { get; protected set; }
+        public int RoleID { get; protected set; }
         public int Status { get; protected set; }
         public string Salt { get; protected set; }
         public DateTime Created_at { get; protected set; }
+
+        public virtual Role Role { get; set; }
+
+        protected User()
+        {
+
+        }
 
         public User(string login, string password, Role role, string salt)
         {
@@ -24,7 +27,7 @@ namespace SerwisProduktow.Domain.Entities
             SetPassword(password, salt);
             SetRole(role);
             SetStatus(0);
-            Created_at = DateTime.UtcNow;
+            Created_at = DateTime.Now;
         }
         public void SetLogin(string login)
         {
@@ -44,7 +47,7 @@ namespace SerwisProduktow.Domain.Entities
         }
         public void SetRole (Role role)
         {
-            Role = role;   
+            RoleID = role.ID;
         }
         public void SetStatus(int status)
         {

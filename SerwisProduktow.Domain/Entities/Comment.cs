@@ -10,15 +10,18 @@ namespace SerwisProduktow.Domain.Entities
     {
         public int ID { get; protected set; }
         public string Content { get; protected set; }
-        public Service IDServices { get; protected set; }
         public int IDUser { get; protected set; }
         public DateTime DateOfAddition { get; protected set; }
         public string UserName { get; protected set; }
 
-        public Comment(string content, User user, Service service)
+        public virtual Service Service { get; set; }
+        protected Comment()
+        {
+
+        }
+        public Comment(string content, User user)
         {
             SetContent(content);
-            IDServices = service;
             IDUser = user.ID;
             UserName = user.Login;
             DateOfAddition = DateTime.UtcNow;

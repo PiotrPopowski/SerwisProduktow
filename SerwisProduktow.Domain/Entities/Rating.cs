@@ -17,7 +17,7 @@ namespace SerwisProduktow.Domain.Entities
         {
             SumOfVotes =SumOfVotes + ocena;
             NumberOfVotes++;
-            AvarageOfVotes = SumOfVotes / NumberOfVotes;
+            AvarageOfVotes = (double)SumOfVotes / (double)NumberOfVotes;
         }
     }
 }

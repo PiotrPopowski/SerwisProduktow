@@ -1,6 +1,4 @@
-﻿using System;
-using AutoMapper;
-using SerwisProduktow.Domain;
+﻿using AutoMapper;
 using SerwisProduktow.Domain.Entities;
 using SerwisProduktow.Infrastructure.DTO;
 

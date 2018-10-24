@@ -8,9 +8,14 @@ namespace SerwisProduktow.Domain.Entities
 {
     public class Category_Services
     {
-        public Category_Services()
+        public Category_Services(string category="")
         {
+            NameOfCategory = category;
             Services = new HashSet<Service>();
+        }
+        protected Category_Services()
+        {
+
         }
         public int ID { get; protected set; }
         public string NameOfCategory { get; protected set; }

@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\DataInitializer.cs" />
     <Compile Include="Concrete\DBEntities.cs" />
     <Compile Include="Concrete\DBServiceRepository.cs" />
     <Compile Include="Concrete\DBUserRepository.cs" />

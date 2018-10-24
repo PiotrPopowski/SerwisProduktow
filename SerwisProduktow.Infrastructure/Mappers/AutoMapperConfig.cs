@@ -4,7 +4,7 @@ using SerwisProduktow.Infrastructure.DTO;
 
 namespace SerwisProduktow.Infrastructure.Mappers
 {
-    class AutoMapperConfig
+    public class AutoMapperConfig
     {
         public static IMapper Initialize()
             => new MapperConfiguration(cfg =>
@@ -13,7 +13,7 @@ namespace SerwisProduktow.Infrastructure.Mappers
                 cfg.CreateMap<Comment, CommentDto>();
                 cfg.CreateMap<Rating, RatingDto>();
                 cfg.CreateMap<Service, ServiceDto>();
-                cfg.CreateMap<User, UserDto>();
+                cfg.CreateMap<User, UserDto>().ForMember(userDto => userDto.Role, opt => opt.MapFrom(user => user.Role.Name));
             })
             .CreateMapper();
     

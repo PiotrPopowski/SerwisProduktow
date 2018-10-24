@@ -31,14 +31,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
         public UserDto Get(string login)
         {
             var user = users.Get(login);
-            return new UserDto()
-            {
-                ID = user.ID,
-                Login = user.Login,
-                Role = Role.GetRoleName(user.RoleID),
-                Status = user.Status,
-                Created_at = user.Created_at
-            };
+            return Mappers.AutoMapperConfig.Initialize().Map<User, UserDto>(user);
         }
         public UserDto Get(int id)
         {

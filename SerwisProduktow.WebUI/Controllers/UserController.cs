@@ -23,10 +23,10 @@ namespace SerwisProduktow.WebUI.Controllers
             return Json(user,JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public JsonResult Register(string login,string password)
+        public JsonResult Register(UserDto register)
         {
-            userRepository.Register(login, password);
-            var user = userRepository.Get(login);
+            userRepository.Register(register);
+            var user = userRepository.Get(register.Login);
             return Json(user, JsonRequestBehavior.AllowGet);
         }
     }

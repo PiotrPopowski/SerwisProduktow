@@ -11,7 +11,7 @@ namespace SerwisProduktow.Domain.Repositories
         IEnumerable<Comment> GetComments(int serviceID);
         Category_Services GetCategory(int categoryID);
         void Add(Service service);
-        void AddComment(Comment comment, int serviceID);
+        void AddComment(Comment comment);
         void Remove(int serviceID);
         void Update();
         Rating CreateRating();

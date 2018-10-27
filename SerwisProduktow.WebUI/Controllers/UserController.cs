@@ -1,5 +1,6 @@
 ﻿using SerwisProduktow.Infrastructure.DTO;
 using SerwisProduktow.Infrastructure.Repositories;
+using SerwisProduktow.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,26 @@ namespace SerwisProduktow.WebUI.Controllers
         {
             userRepository = repo;
         }
+
         [HttpGet]
         public JsonResult Get(int id)
         {
             var user = userRepository.Get(id);
             return Json(user,JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
-        public JsonResult Register(UserDto register)
+        public JsonResult GetAll()
+        {
+            return Json(userRepository.GetAll(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Register(UserModel register)
         {
             userRepository.Register(register);
             var user = userRepository.Get(register.Login);
-            return Json(user, JsonRequestBehavior.AllowGet);
+            return Json(user);
         }
     }
 }

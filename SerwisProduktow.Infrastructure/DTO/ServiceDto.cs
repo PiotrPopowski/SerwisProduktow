@@ -12,6 +12,6 @@ namespace SerwisProduktow.Infrastructure.DTO
         public DateTime DateOfAddition { get; set; }
         public CategoryDto Category { get; set; }
         public RatingDto Rating { get; set; }
-        public ICollection<CommentDto> Comments { get; set; }
+        public IEnumerable<CommentDto> Comments { get; set; }
     }
 }

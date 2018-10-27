@@ -34,11 +34,10 @@ namespace SerwisProduktow.Domain.Concrete
             return Get(serviceID).Comments.ToList();
         }
 
-        public void AddComment(Comment comment,int serviceID)
+        public void AddComment(Comment comment)
         {
-            var service = Get(serviceID);
+            var service = Get(comment.Service.ID);
             service.Comments.Add(comment);
-            comment.Service = service;
             dBEntities.Comments.Add(comment);
             dBEntities.SaveChanges();
         }

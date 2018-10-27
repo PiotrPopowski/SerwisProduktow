@@ -10,20 +10,20 @@ namespace SerwisProduktow.Domain.Entities
     {
         public int ID { get; protected set; }
         public string Content { get; protected set; }
-        public int IDUser { get; protected set; }
         public DateTime DateOfAddition { get; protected set; }
-        public string UserName { get; protected set; }
 
-        public virtual Service Service { get; set; }
+        public virtual User User { get; protected set; }
+        public virtual Service Service { get; protected set; }
+
         protected Comment()
         {
 
         }
-        public Comment(string content, User user)
+        public Comment(string content, User user, Service service)
         {
             SetContent(content);
-            IDUser = user.ID;
-            UserName = user.Login;
+            User = user;
+            Service = service;
             DateOfAddition = DateTime.Now;
         }
 

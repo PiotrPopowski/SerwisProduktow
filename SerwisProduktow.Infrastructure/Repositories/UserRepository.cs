@@ -1,6 +1,7 @@
 ﻿using SerwisProduktow.Domain.Entities;
 using SerwisProduktow.Domain.Repositories;
 using SerwisProduktow.Infrastructure.DTO;
+using SerwisProduktow.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,9 @@ namespace SerwisProduktow.Infrastructure.Repositories
 
         public IEnumerable<UserDto> GetAll()
         {
-            throw new NotImplementedException();
+            IEnumerable<User> allUsers = users.GetAll();
+            IEnumerable<UserDto> usersDto = Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<User>, IEnumerable<UserDto>>(allUsers);
+            return usersDto;
         }
 
         public void Login(string login, string password)
@@ -48,16 +51,16 @@ namespace SerwisProduktow.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public void Register(string login, string password)
+        public void Register(UserModel register)
         {
-            var user = users.Get(login);
+            var user = users.Get(register.Login);
             if (user != null)
             {
                 throw new Exception();
             }
 
             string salt = Guid.NewGuid().ToString();
-            user = new User(login, password, Role.User, salt);
+            user = new User(register.Login, register.Password, Role.User, salt);
             users.Add(user);
         }
 

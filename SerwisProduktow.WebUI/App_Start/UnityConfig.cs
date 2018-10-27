@@ -3,9 +3,7 @@ using SerwisProduktow.Domain.Repositories;
 using SerwisProduktow.Infrastructure.Repositories;
 using SerwisProduktow.WebUI.Controllers;
 using System;
-
 using Unity;
-using Unity.Injection;
 
 namespace SerwisProduktow.WebUI
 {
@@ -32,7 +30,6 @@ namespace SerwisProduktow.WebUI
         
         public static void RegisterTypes(IUnityContainer container)
         {
-            //container.RegisterType<UserController>(new InjectionConstructor());
             container.RegisterSingleton<IDBEntities, DBEntities>();
             container.RegisterType<IDBUserRepository, DBUserRepository>();
             container.RegisterType<IDBServiceRepository, DBServiceRepository>();

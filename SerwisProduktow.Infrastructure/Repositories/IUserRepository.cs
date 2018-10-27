@@ -1,5 +1,6 @@
 ﻿using SerwisProduktow.Domain.Entities;
 using SerwisProduktow.Infrastructure.DTO;
+using SerwisProduktow.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
         UserDto Get(string login);
         UserDto Get(int id);
         IEnumerable<UserDto> GetAll();
-        void Register(UserDto register);
+        void Register(UserModel register);
         void Login(string login, string password);
         void ChangePassword(int userID, string currentPassword, string newPassword);
         void SetRole(int userID, string role);

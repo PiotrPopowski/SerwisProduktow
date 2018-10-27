@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SerwisProduktow.Domain.Entities;
 using SerwisProduktow.Domain.Repositories;
 using SerwisProduktow.Infrastructure.DTO;
+using SerwisProduktow.Infrastructure.ViewModels;
 
 namespace SerwisProduktow.Infrastructure.Repositories
 {
@@ -17,39 +18,36 @@ namespace SerwisProduktow.Infrastructure.Repositories
             services = repo;
         }
 
-        public void Add(int userID, string descryption, int categoryID)
+        public void Add(ServiceModel service)
         {
-            var user = services.GetUser(userID);
-            var category = services.GetCategory(categoryID);
+            var user = services.GetUser(service.UserID);
+            var category = services.GetCategory(service.CategoryID);
             var rating = services.CreateRating();
             if (user == null) throw new Exception();
             if (category == null) throw new Exception();
 
-            var service = new Service(user, category, rating, descryption);
-            services.Add(service);
+            var newService = new Service(user, category, rating, service.Descryption);
+            services.Add(newService);
         }
 
-        public void AddComment(int userID, string content, int serviceID)
+        public void AddComment(CommentModel customComment)
         {
-            var user = services.GetUser(userID);
-            var comment = new Comment(content, user);
-            var allcomments = services.GetComments(serviceID);
-            services.AddComment(comment,serviceID);
+            var user = services.GetUser(customComment.UserID);
+            var service = services.Get(customComment.ServiceID);
+            var comment = new Comment(customComment.Content, user, service);
+            services.AddComment(comment);
         }
 
         public ServiceDto Get(int id)
         {
-            throw new NotImplementedException();
+            var service = services.Get(id);
+            return Mappers.AutoMapperConfig.Initialize().Map<Service, ServiceDto>(service);
         }
 
-        public ICollection<ServiceDto> GetAll()
+        public IEnumerable<ServiceDto> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<CommentDto> GetComments()
-        {
-            throw new NotImplementedException();
+            var service = services.GetAll();
+            return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
         }
 
         public void Remove(int serviceID)

@@ -9,6 +9,5 @@ namespace SerwisProduktow.Infrastructure.DTO
         public string Role { get; set; }
         public int Status { get; set; }
         public DateTime Created_at { get; set; }
-
     }
 }

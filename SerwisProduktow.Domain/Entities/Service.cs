@@ -9,15 +9,14 @@ namespace SerwisProduktow.Domain.Entities
     public class Service
     {
         public int ID { get; protected set; }
-        public int IDUser { get; protected set; }
-        public string UserName { get; protected set; }
         public string Descryption { get; protected set; }
         public int Status { get; protected set; }
         public DateTime DateOfAddition { get; protected set; }
 
-        public virtual Category_Services Category { get; set; }
-        public virtual Rating Rating { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual User User { get; protected set; }
+        public virtual Category_Services Category { get; protected set; }
+        public virtual Rating Rating { get; protected set; }
+        public virtual ICollection<Comment> Comments { get; protected set; }
 
         protected Service()
         {
@@ -25,8 +24,7 @@ namespace SerwisProduktow.Domain.Entities
         }
         public Service(User user, Category_Services category, Rating rating, string descryption)
         {
-            IDUser = user.ID;
-            UserName = user.Login;
+            User = user;
             SetCategory(category);
             SetDescryption(descryption);
             SetStatus(0);

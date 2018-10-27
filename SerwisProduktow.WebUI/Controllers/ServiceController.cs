@@ -1,4 +1,5 @@
 ﻿using SerwisProduktow.Infrastructure.Repositories;
+using SerwisProduktow.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,27 @@ namespace SerwisProduktow.WebUI.Controllers
         {
             serviceRepository = repo;
         }
-        // GET: Service
-        public void AddService(int userID, string descryption, int categoryID)
+
+        public void AddService(ServiceModel service)
         {
-            serviceRepository.Add(userID, descryption, categoryID);
+            serviceRepository.Add(service);
         }
 
-        public void AddComment(int userID, string content, int serviceID)
+        public void AddComment(CommentModel comment)
         {
-            serviceRepository.AddComment(userID, content, serviceID);
+            serviceRepository.AddComment(comment);
+        }
+        [HttpGet]
+        public JsonResult GetAll()
+        {
+            var services = serviceRepository.GetAll();
+            return Json(services, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public JsonResult Get(int id)
+        {
+            var service = serviceRepository.Get(id);
+            return Json(service);
         }
 
         public void Vote(int userID, int rate, int serviceID)

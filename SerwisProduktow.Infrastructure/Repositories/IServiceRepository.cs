@@ -1,4 +1,5 @@
 ﻿using SerwisProduktow.Infrastructure.DTO;
+using SerwisProduktow.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,9 @@ namespace SerwisProduktow.Infrastructure.Repositories
     public interface IServiceRepository
     {
         ServiceDto Get(int id);
-        ICollection<ServiceDto> GetAll();
-        ICollection<CommentDto> GetComments();
-        void Add(int userID, string descryption, int categoryID);
-        void AddComment(int userID, string content, int serviceID);
+        IEnumerable<ServiceDto> GetAll();
+        void Add(ServiceModel service);
+        void AddComment(CommentModel comment);
         void Vote(int userID, int rate, int serviceID);
         void Remove(int serviceID);
         void SetCategory(int serviceID, int categoryID);

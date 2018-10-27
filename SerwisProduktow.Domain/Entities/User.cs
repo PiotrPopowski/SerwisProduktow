@@ -9,12 +9,11 @@ namespace SerwisProduktow.Domain.Entities
         public int ID { get; protected set; }
         public string Login { get; protected set; }
         public string Password { get; protected set; }
-        public int RoleID { get; protected set; }
         public int Status { get; protected set; }
         public string Salt { get; protected set; }
         public DateTime Created_at { get; protected set; }
 
-        public virtual Role Role { get; set; }
+        public virtual Role Role { get; protected set; }
 
         protected User()
         {
@@ -47,7 +46,7 @@ namespace SerwisProduktow.Domain.Entities
         }
         public void SetRole (Role role)
         {
-            RoleID = role.ID;
+            Role = role;
         }
         public void SetStatus(int status)
         {

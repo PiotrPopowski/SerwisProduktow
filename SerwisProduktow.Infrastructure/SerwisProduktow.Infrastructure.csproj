@@ -115,6 +115,9 @@
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="ViewModels\CommentModel.cs" />
+    <Compile Include="ViewModels\UserModel.cs" />
+    <Compile Include="ViewModels\ServiceModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SerwisProduktow.Domain\SerwisProduktow.Domain.csproj">

@@ -6,11 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace SerwisProduktow.WebUI.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ApiController
     {
         private IUserRepository userRepository;
         public UserController(IUserRepository repo)
@@ -19,20 +20,21 @@ namespace SerwisProduktow.WebUI.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get(int id)
+        public JsonResult<UserDto> Get(int id)
         {
             var user = userRepository.Get(id);
-            return Json(user,JsonRequestBehavior.AllowGet);
+            return Json(user);
         }
 
-        [HttpGet]
-        public JsonResult GetAll()
+        [System.Web.Http.HttpGet]
+        public JsonResult<IEnumerable<UserDto>> GetAll()
         {
-            return Json(userRepository.GetAll(), JsonRequestBehavior.AllowGet);
+            return Json(userRepository.GetAll());
         }
 
-        [HttpPost]
-        public JsonResult Register(UserModel register)
+        [Route("api/User/Register")]
+        [System.Web.Http.HttpPost]
+        public JsonResult<UserDto> Register([System.Web.Http.FromBody]UserModel register)
         {
             userRepository.Register(register);
             var user = userRepository.Get(register.Login);

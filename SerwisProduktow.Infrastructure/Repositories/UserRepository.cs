@@ -38,7 +38,6 @@ namespace SerwisProduktow.Infrastructure.Repositories
         {
             return Get(users.Get(id).Login);
         }
-
         public IEnumerable<UserDto> GetAll()
         {
             IEnumerable<User> allUsers = users.GetAll();

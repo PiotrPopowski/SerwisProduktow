@@ -1,38 +1,45 @@
-﻿using SerwisProduktow.Infrastructure.Repositories;
+﻿using SerwisProduktow.Infrastructure.DTO;
+using SerwisProduktow.Infrastructure.Repositories;
 using SerwisProduktow.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace SerwisProduktow.WebUI.Controllers
 {
-    public class ServiceController : Controller
+    public class ServiceController : ApiController
     {
         private IServiceRepository serviceRepository;
         public ServiceController(IServiceRepository repo)
         {
             serviceRepository = repo;
         }
-
-        public void AddService(ServiceModel service)
+        [Route("api/Service/AddService")]
+        [HttpPost]
+        public void AddService([FromBody]ServiceModel service)
         {
             serviceRepository.Add(service);
         }
 
-        public void AddComment(CommentModel comment)
+        [Route("api/Service/AddComment")]
+        [HttpPost]
+        public void AddComment([FromBody]CommentModel comment)
         {
             serviceRepository.AddComment(comment);
         }
+
         [HttpGet]
-        public JsonResult GetAll()
+        public JsonResult<IEnumerable<ServiceDto>> GetAll()
         {
             var services = serviceRepository.GetAll();
-            return Json(services, JsonRequestBehavior.AllowGet);
+            return Json(services);
         }
+
         [HttpGet]
-        public JsonResult Get(int id)
+        public JsonResult<ServiceDto> Get(int id)
         {
             var service = serviceRepository.Get(id);
             return Json(service);

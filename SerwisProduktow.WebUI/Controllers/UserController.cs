@@ -1,6 +1,7 @@
 ﻿using SerwisProduktow.Infrastructure.DTO;
 using SerwisProduktow.Infrastructure.Repositories;
 using SerwisProduktow.Infrastructure.ViewModels;
+using SerwisProduktow.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,19 @@ namespace SerwisProduktow.WebUI.Controllers
 
         [Route("api/User/Register")]
         [System.Web.Http.HttpPost]
-        public JsonResult<UserDto> Register([System.Web.Http.FromBody]UserModel register)
+        public Result Register([System.Web.Http.FromBody]UserModel register)
         {
-            userRepository.Register(register);
-            var user = userRepository.Get(register.Login);
-            return Json(user);
+            Result result;
+            try
+            {
+                userRepository.Register(register);
+                result = new Result(true, "");
+            }
+            catch (Exception ex)
+            {
+                result = new Result(false, ex.Message);
+            }
+            return result;
         }
     }
 }

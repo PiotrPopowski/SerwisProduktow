@@ -55,7 +55,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
             var user = users.Get(register.Login);
             if (user != null)
             {
-                throw new Exception();
+                throw new Exception($"The user with login {register.Login} already exist.");
             }
 
             string salt = Guid.NewGuid().ToString();

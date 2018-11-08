@@ -1,8 +1,11 @@
-﻿using System;
+﻿using SerwisProduktow.Domain.Exceptions;
+using SerwisProduktow.Infrastructure.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace SerwisProduktow.Domain.Entities
 {
@@ -29,8 +32,8 @@ namespace SerwisProduktow.Domain.Entities
 
         public void SetContent(string content)
         {
-            if (content.Length < 20) throw new Exception();
-            if (content.Length > 190) throw new Exception();
+            if (content.Length < 20) throw new WojtekException(ErrorCodes.ShortComment);
+            if (content.Length > 190) throw new WojtekException(ErrorCodes.LongComment);
             Content = content;
         }
     }

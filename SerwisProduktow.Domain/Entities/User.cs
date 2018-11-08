@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SerwisProduktow.Domain.Exceptions;
+using SerwisProduktow.Infrastructure.Exceptions;
+using System;
 using System.Text.RegularExpressions;
 
 namespace SerwisProduktow.Domain.Entities
@@ -31,16 +33,16 @@ namespace SerwisProduktow.Domain.Entities
         }
         public void SetLogin(string login)
         {
-            if (String.IsNullOrEmpty(login)) throw new Exception();
-            if (!NameRegex.IsMatch(login)) throw new Exception();
+            if (String.IsNullOrEmpty(login)) throw new WojtekException(ErrorCodes.NullLogin);
+            if (!NameRegex.IsMatch(login)) throw new WojtekException(ErrorCodes.WrongCharacterLogin);
             Login = login;
         }
         public void SetPassword(string password, string salt)
         {
-            if (string.IsNullOrWhiteSpace(password)) throw new Exception();
-            if (string.IsNullOrWhiteSpace(salt)) throw new Exception();
-            if (password.Length < 8) throw new Exception();
-            if (password.Length > 32) throw new Exception();
+            if (string.IsNullOrWhiteSpace(password)) throw new WojtekException(ErrorCodes.NullPassword);
+            if (string.IsNullOrWhiteSpace(salt)) throw new WojtekException(ErrorCodes.WrongSalt);
+            if (password.Length < 8) throw new WojtekException(ErrorCodes.ShortPassword);
+            if (password.Length > 32) throw new WojtekException(ErrorCodes.LongPassword);
 
             Password = password;
             Salt = salt;
@@ -52,7 +54,7 @@ namespace SerwisProduktow.Domain.Entities
         public void SetStatus(int status)
         {
             if (status == 0 || status == 1) Status = status;
-            else throw new Exception();
+            else throw new WojtekException(ErrorCodes.WrongStatus);
         }
     }
 }

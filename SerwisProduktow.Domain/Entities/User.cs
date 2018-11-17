@@ -1,5 +1,5 @@
 ﻿using SerwisProduktow.Domain.Exceptions;
-using SerwisProduktow.Infrastructure.Exceptions;
+using SerwisProduktow.Domain.Interfaces;
 using System;
 using System.Text.RegularExpressions;
 
@@ -23,10 +23,10 @@ namespace SerwisProduktow.Domain.Entities
 
         }
 
-        public User(string login, string password, Role role, string salt)
+        public User(string login, string password, Role role, IEncrypter encrypter)
         {
             SetLogin(login);
-            SetPassword(password, salt);
+            SetPassword(password, encrypter);
             SetRole(role);
             SetStatus(0);
             Created_at = DateTime.Now;
@@ -37,14 +37,14 @@ namespace SerwisProduktow.Domain.Entities
             if (!NameRegex.IsMatch(login)) throw new WojtekException(ErrorCodes.WrongCharacterLogin);
             Login = login;
         }
-        public void SetPassword(string password, string salt)
+        public void SetPassword(string password, IEncrypter encrypter)
         {
             if (string.IsNullOrWhiteSpace(password)) throw new WojtekException(ErrorCodes.NullPassword);
-            if (string.IsNullOrWhiteSpace(salt)) throw new WojtekException(ErrorCodes.WrongSalt);
             if (password.Length < 8) throw new WojtekException(ErrorCodes.ShortPassword);
             if (password.Length > 32) throw new WojtekException(ErrorCodes.LongPassword);
-
-            Password = password;
+            string salt = encrypter.GetSalt(password);
+            string hash = encrypter.GetHash(password, salt);
+            Password = hash;
             Salt = salt;
         }
         public void SetRole (Role role)

@@ -1,7 +1,8 @@
 ﻿using SerwisProduktow.Infrastructure.DTO;
 using SerwisProduktow.Infrastructure.Repositories;
+using SerwisProduktow.Infrastructure.Services;
 using SerwisProduktow.Infrastructure.ViewModels;
-using SerwisProduktow.WebUI.Models;
+using SerwisProduktow.WebUI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,15 @@ using System.Web.Http.Results;
 
 namespace SerwisProduktow.WebUI.Controllers
 {
+    [JwtAuthentication]
     public class UserController : ApiController
     {
-        private IUserRepository userRepository;
-        public UserController(IUserRepository repo)
+        private readonly IUserRepository userRepository;
+        private readonly IJwtHandler jwtHandler;
+        public UserController(IUserRepository repo, IJwtHandler jwt)
         {
             userRepository = repo;
+            jwtHandler = jwt;
         }
 
         [HttpGet]
@@ -27,6 +31,7 @@ namespace SerwisProduktow.WebUI.Controllers
             return Json(user);
         }
 
+        [JwtAuthentication(Role = "Admin")]
         [System.Web.Http.HttpGet]
         public JsonResult<IEnumerable<UserDto>> GetAll()
         {
@@ -34,20 +39,19 @@ namespace SerwisProduktow.WebUI.Controllers
         }
 
         [Route("api/User/Register")]
-        [System.Web.Http.HttpPost]
-        public Result Register([System.Web.Http.FromBody]UserModel register)
+        [HttpPost, AllowAnonymous]
+        public IHttpActionResult Register([System.Web.Http.FromBody]UserModel register)
         {
-            Result result;
-            try
-            {
-                userRepository.Register(register);
-                result = new Result(true, "");
-            }
-            catch (Exception ex)
-            {
-                result = new Result(false, ex.Message);
-            }
-            return result;
+            userRepository.Register(register);
+            return Ok();
+        }
+
+        [Route("api/Login")]
+        [HttpPost, AllowAnonymous]
+        public IHttpActionResult Login([FromBody]UserModel login)
+        {
+            var user = userRepository.Login(login.Login, login.Password);
+            return Ok(jwtHandler.CreateToken(user.ID, user.Role));
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace SerwisProduktow.Infrastructure.Exceptions
+namespace SerwisProduktow.Domain.Exceptions
 {
     public class WojtekException : Exception
     {

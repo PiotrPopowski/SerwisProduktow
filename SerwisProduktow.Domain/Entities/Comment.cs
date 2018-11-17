@@ -1,5 +1,4 @@
 ﻿using SerwisProduktow.Domain.Exceptions;
-using SerwisProduktow.Infrastructure.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

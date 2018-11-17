@@ -1,6 +1,9 @@
 ﻿using SerwisProduktow.Domain.Entities;
+using SerwisProduktow.Domain.Exceptions;
+using SerwisProduktow.Domain.Interfaces;
 using SerwisProduktow.Domain.Repositories;
 using SerwisProduktow.Infrastructure.DTO;
+using SerwisProduktow.Infrastructure.Services;
 using SerwisProduktow.Infrastructure.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,13 +13,17 @@ using System.Threading.Tasks;
 
 namespace SerwisProduktow.Infrastructure.Repositories
 {
-    public class UserRepository: IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly IDBUserRepository users;
-        public UserRepository(IDBUserRepository dBUserRepository)
+        private readonly IEncrypter encrypter;
+
+        public UserRepository(IDBUserRepository dBUserRepository, IEncrypter encrypter)
         {
             this.users = dBUserRepository;
+            this.encrypter = encrypter;
         }
+
         protected UserRepository()
         {
 
@@ -25,7 +32,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
         public void ChangePassword(int userID, string currentPassword, string newPassword)
         {
             var user = users.Get(userID);
-            user.SetPassword(newPassword, user.Salt);
+            user.SetPassword(newPassword, encrypter);
             users.Update();
         }
 
@@ -34,10 +41,12 @@ namespace SerwisProduktow.Infrastructure.Repositories
             var user = users.Get(login);
             return Mappers.AutoMapperConfig.Initialize().Map<User, UserDto>(user);
         }
+
         public UserDto Get(int id)
         {
             return Get(users.Get(id).Login);
         }
+
         public IEnumerable<UserDto> GetAll()
         {
             IEnumerable<User> allUsers = users.GetAll();
@@ -45,9 +54,16 @@ namespace SerwisProduktow.Infrastructure.Repositories
             return usersDto;
         }
 
-        public void Login(string login, string password)
+        public UserDto Login(string login, string password)
         {
-            throw new NotImplementedException();
+            var user = users.Get(login);
+            if (user == null) throw new WojtekException("Invalid credentials");
+            string hash = encrypter.GetHash(password, user.Salt);
+            if (hash != user.Password)
+            {
+                throw new WojtekException("Invalid credentials");
+            }
+            return Mappers.AutoMapperConfig.Initialize().Map<User, UserDto>(user);
         }
 
         public void Register(UserModel register)
@@ -55,11 +71,9 @@ namespace SerwisProduktow.Infrastructure.Repositories
             var user = users.Get(register.Login);
             if (user != null)
             {
-                throw new Exception($"The user with login {register.Login} already exist.");
+                throw new WojtekException($"The user with login {register.Login} already exist.");
             }
-
-            string salt = Guid.NewGuid().ToString();
-            user = new User(register.Login, register.Password, Role.User, salt);
+            user = new User(register.Login, register.Password, Role.User, encrypter);
             users.Add(user);
         }
 

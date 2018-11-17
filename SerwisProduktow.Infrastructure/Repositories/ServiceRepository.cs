@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SerwisProduktow.Domain.Entities;
 using SerwisProduktow.Domain.Repositories;
 using SerwisProduktow.Infrastructure.DTO;
+using SerwisProduktow.Domain.Exceptions;
 using SerwisProduktow.Infrastructure.ViewModels;
 
 namespace SerwisProduktow.Infrastructure.Repositories
@@ -23,7 +24,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
             var user = services.GetUser(service.UserID);
             var category = services.GetCategory(service.CategoryID);
             var rating = services.CreateRating();
-            if (user == null) throw new Exception();
+            if (user == null) throw new WojtekException();
             if (category == null) throw new Exception();
 
             var newService = new Service(user, category, rating, service.Descryption);

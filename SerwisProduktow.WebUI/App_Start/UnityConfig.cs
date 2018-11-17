@@ -1,6 +1,8 @@
 using SerwisProduktow.Domain.Concrete;
+using SerwisProduktow.Domain.Interfaces;
 using SerwisProduktow.Domain.Repositories;
 using SerwisProduktow.Infrastructure.Repositories;
+using SerwisProduktow.Infrastructure.Services;
 using System;
 
 using Unity;
@@ -40,6 +42,8 @@ namespace SerwisProduktow.WebUI
         public static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterSingleton<IDBEntities, DBEntities>();
+            container.RegisterSingleton<IEncrypter, Encrypter>();
+            container.RegisterSingleton<IJwtHandler, JwtHandler>();
             container.RegisterType<IDBUserRepository, DBUserRepository>();
             container.RegisterType<IDBServiceRepository, DBServiceRepository>();
             container.RegisterType<IUserRepository, UserRepository>();

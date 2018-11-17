@@ -1,6 +1,7 @@
 ﻿using SerwisProduktow.Infrastructure.DTO;
 using SerwisProduktow.Infrastructure.Repositories;
 using SerwisProduktow.Infrastructure.ViewModels;
+using SerwisProduktow.WebUI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Web.Http.Results;
 
 namespace SerwisProduktow.WebUI.Controllers
 {
+    [JwtAuthentication]
     public class ServiceController : ApiController
     {
         private IServiceRepository serviceRepository;
@@ -17,11 +19,13 @@ namespace SerwisProduktow.WebUI.Controllers
         {
             serviceRepository = repo;
         }
+
         [Route("api/Service/AddService")]
         [HttpPost]
-        public void AddService([FromBody]ServiceModel service)
+        public IHttpActionResult AddService([FromBody]ServiceModel service)
         {
             serviceRepository.Add(service);
+            return Ok();
         }
 
         [Route("api/Service/AddComment")]
@@ -31,18 +35,18 @@ namespace SerwisProduktow.WebUI.Controllers
             serviceRepository.AddComment(comment);
         }
 
-        [HttpGet]
-        public JsonResult<IEnumerable<ServiceDto>> GetAll()
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetAll()
         {
             var services = serviceRepository.GetAll();
-            return Json(services);
+            return Ok(services);
         }
 
         [HttpGet]
-        public JsonResult<ServiceDto> Get(int id)
+        public IHttpActionResult Get(int id)
         {
             var service = serviceRepository.Get(id);
-            return Json(service);
+            return Ok(service);
         }
 
         public void Vote(int userID, int rate, int serviceID)

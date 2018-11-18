@@ -16,6 +16,7 @@ namespace SerwisProduktow.WebUI.Filters
     public class JwtAuthenticationAttribute : Attribute, IAuthenticationFilter
     {
         public string Realm { get; set; }
+        public string RouteName { get; set; }
         public string Role { get; set; }
         public bool AllowMultiple => false;
 
@@ -37,8 +38,12 @@ namespace SerwisProduktow.WebUI.Filters
             var principal = await AuthenticateJwtToken(token);
             if (principal == null)
                 context.ErrorResult = new AuthenticationFailureResult("Invalid token", request);
+
             if (Role != null && !principal.IsInRole(Role))
                 throw new HttpException(403, "Forbidden");
+            if (RouteName != null && principal.Identity.Name != context.ActionContext.RequestContext.RouteData.Values[RouteName].ToString())
+                throw new HttpException(403, "Forbidden");
+
             context.Principal = principal;
         }
 
@@ -134,5 +139,7 @@ namespace SerwisProduktow.WebUI.Filters
             var principal = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
             return principal;
         }
+
+
     }
 }

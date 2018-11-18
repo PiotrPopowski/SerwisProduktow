@@ -1,0 +1,14 @@
+<div class="row mt-5">
+  <div class="col-md-4 mb-3" [@slideIn]="'in'">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title">{{event.Login}}</h5>
+        <p class="card-text">{{event.Role}}</p>
+        <a href="#" class="btn btn-primary">Show More</a>
+      </div>
+      <div class="card-footer text-muted">
+        {{event.Created_at | date:'shortDate'}}
+      </div>
+    </div>
+  </div>
+</div>

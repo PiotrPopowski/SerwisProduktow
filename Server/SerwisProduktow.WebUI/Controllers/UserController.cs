@@ -24,6 +24,8 @@ namespace SerwisProduktow.WebUI.Controllers
             jwtHandler = jwt;
         }
 
+        [Route("api/User/Get/{id}")]
+        [JwtAuthentication(RouteName = "id")]
         [HttpGet]
         public JsonResult<UserDto> Get(int id)
         {
@@ -51,7 +53,9 @@ namespace SerwisProduktow.WebUI.Controllers
         public IHttpActionResult Login([FromBody]UserModel login)
         {
             var user = userRepository.Login(login.Login, login.Password);
-            return Ok(jwtHandler.CreateToken(user.ID, user.Role));
+            var token = jwtHandler.CreateToken(user.ID, user.Role);
+            token.User = user;
+            return Ok(token);
         }
     }
 }

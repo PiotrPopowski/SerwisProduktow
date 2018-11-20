@@ -6,19 +6,19 @@
         <!-- form card login -->
         <div class="card rounded-0">
           <div class="card-header">
-            <h3 class="mb-0">Register</h3>
+            <h3 class="mb-0">Rejestracja</h3>
           </div>
           <div class="card-body">
             <form class="form">
               <div class="form-group">
-                <label for="uname1">Username</label>
+                <label for="uname1">Nazwa użytkownia</label>
                 <input type="text" [(ngModel)]="registerUserData.login" name="login" class="form-control rounded-0" required>
               </div>
               <div class="form-group">
-                <label>Password</label>
+                <label>Hasło</label>
                 <input type="password" [(ngModel)]="registerUserData.password" name="password" class="form-control rounded-0"  required>
               </div>
-              <button type="button" (click)="registerUser()" class="btn btn-primary float-right">Register</button>
+              <button type="button" (click)="registerUser()" class="btn btn-primary float-right">Zarejestruj</button>
             </form>
           </div>
           <!--/card-block-->

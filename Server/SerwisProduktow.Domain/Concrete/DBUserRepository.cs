@@ -21,7 +21,6 @@ namespace SerwisProduktow.Domain.Concrete
 
         public User Get(int id)
         {
-            var U = dBEntities.Users.ToList();
             return dBEntities.Users.FirstOrDefault(u => u.ID == id);
         }
 

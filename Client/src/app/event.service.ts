@@ -14,6 +14,6 @@ export class EventService {
   }
 
   getSpecialEvents() {
-    return this.http.get<any>(this._specialEventsUrl + localStorage.getItem('UserID'))
+    return this.http.get<any>(this._specialEventsUrl + localStorage.getItem('UserID'), { withCredentials: true })
   }
 }

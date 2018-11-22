@@ -1,0 +1,11 @@
+<div *ngIf="user">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Nazwa użytkownika: {{user.Login}}</h5>
+          <p class="card-text">Uprawnienia: {{user.Role}}</p>
+        </div>
+        <div class="card-footer text-muted">
+          Data utworzenia: {{user.Created_at | date:'dd.MM.yyyy'}}
+        </div>
+      </div>
+</div>

@@ -14,6 +14,8 @@ import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { AddServiceComponent } from './add-service/add-service.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserService } from './user.service';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { AddServiceComponent } from './add-service/add-service.component';
     RegisterComponent,
     EventsComponent,
     SpecialEventsComponent,
-    AddServiceComponent
+    AddServiceComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { AddServiceComponent } from './add-service/add-service.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, EventService, 
+  providers: [AuthService, AuthGuard, EventService, UserService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

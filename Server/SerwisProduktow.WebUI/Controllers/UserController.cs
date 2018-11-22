@@ -25,12 +25,11 @@ namespace SerwisProduktow.WebUI.Controllers
         }
 
         [Route("api/User/Get/{id}")]
-        [JwtAuthentication(RouteName = "id")]
-        [HttpGet]
-        public JsonResult<UserDto> Get(int id)
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult Get(int id)
         {
             var user = userRepository.Get(id);
-            return Json(user);
+            return Ok(user);
         }
 
         [JwtAuthentication(Role = "Admin")]

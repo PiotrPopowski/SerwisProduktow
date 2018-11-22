@@ -44,7 +44,8 @@ namespace SerwisProduktow.Infrastructure.Repositories
 
         public UserDto Get(int id)
         {
-            return Get(users.Get(id).Login);
+            var user = users.Get(id);
+            return Mappers.AutoMapperConfig.Initialize().Map<User, UserDto>(user);
         }
 
         public IEnumerable<UserDto> GetAll()

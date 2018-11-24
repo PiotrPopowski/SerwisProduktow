@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component'
 import { EventsComponent } from './events/events.component';
 import { SpecialEventsComponent } from './special-events/special-events.component';
 import { AuthGuard } from './auth.guard';
+import { AddServiceComponent } from './add-service/add-service.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'add-service',
+    component: AddServiceComponent
   }
 ];
 

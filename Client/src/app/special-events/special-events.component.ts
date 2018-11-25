@@ -11,7 +11,7 @@ import { Service } from '../shared/service.model'
 })
 export class SpecialEventsComponent implements OnInit {
 
-  @Input() event = {}
+  event;
   constructor(private _eventService: EventService, private _router: Router) { }
 
   ngOnInit() {

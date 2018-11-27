@@ -21,7 +21,8 @@ export class AuthService {
   }
 
   addService(service) {
-    return this.http.post<any>(this._addingServiceUrl, service);
+    service.UserID=+localStorage.getItem('UserID');
+    return this.http.post<any>(this._addingServiceUrl, service, { withCredentials: true });
   }
 
   logoutUser() {

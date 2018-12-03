@@ -31,8 +31,8 @@ namespace SerwisProduktow.Domain.Entities
 
         public void SetContent(string content)
         {
-            if (content.Length < 20) throw new WojtekException(ErrorCodes.ShortComment);
-            if (content.Length > 190) throw new WojtekException(ErrorCodes.LongComment);
+            if (content.Length < 20) throw new WojtekException(WojtekCodes.ShortComment);
+            if (content.Length > 190) throw new WojtekException(WojtekCodes.LongComment);
             Content = content;
         }
     }

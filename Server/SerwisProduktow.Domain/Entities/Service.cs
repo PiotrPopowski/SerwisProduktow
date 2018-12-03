@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerwisProduktow.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,12 +36,12 @@ namespace SerwisProduktow.Domain.Entities
         public void SetStatus(int status)
         {
             if (status == 0 || status == 1) Status = status;
-            else throw new Exception();
+            else throw new WojtekException(WojtekCodes.WrongStatus);
         }
         public void SetDescryption(string descryption)
         {
-            if (descryption.Length < 50) throw new Exception();
-            if (descryption.Length > 250) throw new Exception();
+            if (descryption.Length < 50) throw new WojtekException(WojtekCodes.ShortDescryption);
+            if (descryption.Length > 250) throw new WojtekException(WojtekCodes.LongDescryption);
             Descryption = descryption;
         }
         public void SetCategory(Category_Services category)

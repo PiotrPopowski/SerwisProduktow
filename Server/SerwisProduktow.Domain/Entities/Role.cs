@@ -17,7 +17,7 @@ namespace SerwisProduktow.Domain.Entities
         public static Role Admin => new Role { ID = 2, Name = "Admin" };
         public static string GetRoleName(int id)
         {
-            switch(id)
+            switch (id)
             {
                 case 1: return "User";
                 case 2: return "Admin";

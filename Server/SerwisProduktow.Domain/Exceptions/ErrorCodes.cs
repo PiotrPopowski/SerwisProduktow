@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SerwisProduktow.Domain.Exceptions
 {
-    public static class ErrorCodes
+    public static class WojtekCodes
     {
         public static string ShortComment => "Komentarz zbyt krótki! (min 20 znaków)";
         public static string LongComment => "Komentarz zbyt długi! (max 190 znaków)";
@@ -19,5 +19,8 @@ namespace SerwisProduktow.Domain.Exceptions
         public static string ShortPassword => "Hasło zbyt krótkie! (min 8 znaków)";
         public static string LongPassword => "Hasło zbyt długie! (max 32 znaki)";
         public static string WrongStatus => "Zły status!";
+        public static string WrongCredentials => "Złe dane logowania!";
+        public static string UserNotFound => "Nie znaleziono użytkownika!";
+        public static string CategoryNotFound => "Nie znaleziono kategori!";
     }
 }

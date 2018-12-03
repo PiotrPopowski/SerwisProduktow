@@ -58,11 +58,11 @@ namespace SerwisProduktow.Infrastructure.Repositories
         public UserDto Login(string login, string password)
         {
             var user = users.Get(login);
-            if (user == null) throw new WojtekException("Invalid credentials");
+            if (user == null) throw new WojtekException(WojtekCodes.WrongCredentials);
             string hash = encrypter.GetHash(password, user.Salt);
             if (hash != user.Password)
             {
-                throw new WojtekException("Invalid credentials");
+                throw new WojtekException(WojtekCodes.WrongCredentials);
             }
             return Mappers.AutoMapperConfig.Initialize().Map<User, UserDto>(user);
         }
@@ -72,7 +72,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
             var user = users.Get(register.Login);
             if (user != null)
             {
-                throw new WojtekException($"The user with login {register.Login} already exist.");
+                throw new WojtekException($"Użytkownik o loginie {register.Login} już istnieje!");
             }
             user = new User(register.Login, register.Password, Role.User, encrypter);
             users.Add(user);

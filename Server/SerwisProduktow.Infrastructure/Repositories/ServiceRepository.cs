@@ -24,8 +24,8 @@ namespace SerwisProduktow.Infrastructure.Repositories
             var user = services.GetUser(service.UserID);
             var category = services.GetCategory(service.CategoryID);
             var rating = services.CreateRating();
-            if (user == null) throw new WojtekException();
-            if (category == null) throw new Exception();
+            if (user == null) throw new WojtekException(WojtekCodes.UserNotFound);
+            if (category == null) throw new WojtekException(WojtekCodes.CategoryNotFound);
 
             var newService = new Service(user, category, rating, service.Descryption);
             services.Add(newService);

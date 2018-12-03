@@ -33,15 +33,15 @@ namespace SerwisProduktow.Domain.Entities
         }
         public void SetLogin(string login)
         {
-            if (String.IsNullOrEmpty(login)) throw new WojtekException(ErrorCodes.NullLogin);
-            if (!NameRegex.IsMatch(login)) throw new WojtekException(ErrorCodes.WrongCharacterLogin);
+            if (String.IsNullOrEmpty(login)) throw new WojtekException(WojtekCodes.NullLogin);
+            if (!NameRegex.IsMatch(login)) throw new WojtekException(WojtekCodes.WrongCharacterLogin);
             Login = login;
         }
         public void SetPassword(string password, IEncrypter encrypter)
         {
-            if (string.IsNullOrWhiteSpace(password)) throw new WojtekException(ErrorCodes.NullPassword);
-            if (password.Length < 8) throw new WojtekException(ErrorCodes.ShortPassword);
-            if (password.Length > 32) throw new WojtekException(ErrorCodes.LongPassword);
+            if (string.IsNullOrWhiteSpace(password)) throw new WojtekException(WojtekCodes.NullPassword);
+            if (password.Length < 8) throw new WojtekException(WojtekCodes.ShortPassword);
+            if (password.Length > 32) throw new WojtekException(WojtekCodes.LongPassword);
             string salt = encrypter.GetSalt(password);
             string hash = encrypter.GetHash(password, salt);
             Password = hash;
@@ -54,7 +54,7 @@ namespace SerwisProduktow.Domain.Entities
         public void SetStatus(int status)
         {
             if (status == 0 || status == 1) Status = status;
-            else throw new WojtekException(ErrorCodes.WrongStatus);
+            else throw new WojtekException(WojtekCodes.WrongStatus);
         }
     }
 }

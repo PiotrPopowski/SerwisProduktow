@@ -8,9 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { EventsComponent } from './events/events.component';
+import { ServicesComponent } from './services/services.component';
 import { AuthService } from './auth.service';
-import { EventService } from './event.service';
+import { ServicesService } from './services.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
@@ -22,7 +22,7 @@ import { UserService } from './user.service';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    EventsComponent,
+    ServicesComponent,
     AddServiceComponent,
     UserDetailComponent
   ],
@@ -32,7 +32,7 @@ import { UserService } from './user.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, EventService, UserService,
+  providers: [AuthService, AuthGuard, ServicesService, UserService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

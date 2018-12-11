@@ -17,6 +17,7 @@ export class AddServiceComponent implements OnInit {
   }
 
   addNewService () {
+    console.log(this.serviceData);
     this._auth.addService(this.serviceData)
     .subscribe(
       res => {

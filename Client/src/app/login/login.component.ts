@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         var b = res.Token
         localStorage.setItem('Token', res.Token)
         localStorage.setItem('UserID', res.User.ID)
-        this._router.navigate(['/special'])
+        this._router.navigate(['/events'])
       },
       err => console.log(err)
     ) 

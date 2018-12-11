@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { EventsComponent } from './events/events.component';
 import { AddServiceComponent } from './add-service/add-service.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'add-service',
     component: AddServiceComponent
+  },
+  {
+    path: 'User/',
+    component: UserDetailComponent
   }
 ];
 

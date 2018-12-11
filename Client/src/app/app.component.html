@@ -10,7 +10,7 @@
         <a class="nav-link" routerLink="/events" routerLinkActive="active">Produkty</a>
       </li>
       <li class="nav_item">
-        <a class="nav-link" routerLink="/add-service" routerLinkActive="active">Dodaj Produkt</a>
+        <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/add-service" routerLinkActive="active">Dodaj Produkt</a>
       </li>
     </ul>
     <ul class="navbar-nav">

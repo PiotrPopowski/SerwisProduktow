@@ -29,7 +29,7 @@ const routes: Routes = [
     component: AddServiceComponent
   },
   {
-    path: 'User/',
+    path: 'User/18',
     component: UserDetailComponent
   }
 ];

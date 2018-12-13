@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'add-service',
     component: AddServiceComponent
+  },
+  {
+    path: 'User/',
+    component: UserDetailComponent
   }
 ];
 

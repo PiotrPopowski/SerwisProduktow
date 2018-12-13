@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       res => {
         localStorage.setItem('token', res.token)
-        this._router.navigate(['/special'])
+        this._router.navigate(['/services'])
       },
       err => console.log(err)
     )      

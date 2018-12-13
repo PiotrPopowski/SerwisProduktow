@@ -11,17 +11,15 @@
         <div class="card-body">
           <form class="form">
             <div class="form-group">
-            </div>
-            <div class="form-group">
-              <label for="pdesc">Opis Produktu</label>
+              <label>Opis Produktu</label>
               <input type="text" class="form-control rounded-0" [(ngModel)]="serviceData.Descryption" name="Opis" required>
             </div>
             <div class="form-group">
-              <label for="pdesc">Kategoria</label>
-              <select class="form-control" [(ngModel)]="serviceData.CategoryID">
-                <option value='1'>Ubrania</option>
-                <option value='2'>Inne</option>
-            </select>
+              <label>Kategoria</label>
+              <select class="form-control" name="Category" [(ngModel)]="serviceData.CategoryID">
+                <option [ngValue]="1">Ubrania</option>
+                <option [ngValue]="2">Inne</option>
+              </select>
             </div>
             <button type="button" (click)="addNewService()" class="btn btn-success float-right">Dodaj Produkt</button>
           </form>

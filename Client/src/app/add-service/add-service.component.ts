@@ -17,10 +17,11 @@ export class AddServiceComponent implements OnInit {
   }
 
   addNewService () {
+    console.log(this.serviceData);
     this._auth.addService(this.serviceData)
     .subscribe(
       res => {
-        this._router.navigate(['/special'])
+        this._router.navigate(['/services'])
       },
       err => console.log(err)
     ) 

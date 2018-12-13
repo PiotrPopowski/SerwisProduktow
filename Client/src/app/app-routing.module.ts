@@ -2,19 +2,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
-import { EventsComponent } from './events/events.component';
+import { ServicesComponent } from './services/services.component';
 import { AddServiceComponent } from './add-service/add-service.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-
+import { UserDetailComponent } from './user-detail/user-detail.component'
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/events',
+    redirectTo: '/services',
     pathMatch: 'full'
   },
   {
-    path: 'events',
-    component: EventsComponent
+    path: 'services',
+    component: ServicesComponent
+  },
+  {
+    path: 'user/:id',
+    component: UserDetailComponent
   },
   {
     path: 'login',
@@ -29,7 +32,7 @@ const routes: Routes = [
     component: AddServiceComponent
   },
   {
-    path: 'User/18',
+    path: 'User/',
     component: UserDetailComponent
   }
 ];

@@ -11,6 +11,7 @@ namespace SerwisProduktow.Domain.Entities
         public int ID { get; protected set; }
         public string Login { get; protected set; }
         public string Password { get; protected set; }
+        public string UserName { get; protected set; }
         public int Status { get; protected set; }
         public string Salt { get; protected set; }
         public int RoleID { get; protected set; }
@@ -23,19 +24,30 @@ namespace SerwisProduktow.Domain.Entities
 
         }
 
-        public User(string login, string password, Role role, IEncrypter encrypter)
+        public User(string login, string password, Role role, string name, IEncrypter encrypter)
         {
             SetLogin(login);
             SetPassword(password, encrypter);
+            SetUserName(name);
             SetRole(role);
             SetStatus(0);
             Created_at = DateTime.Now;
         }
         public void SetLogin(string login)
         {
+            if (login.Length > 15) throw new WojtekException(WojtekCodes.LongLogin);
+            if (login.Length < 4) throw new WojtekException(WojtekCodes.ShortLogin);
             if (String.IsNullOrEmpty(login)) throw new WojtekException(WojtekCodes.NullLogin);
             if (!NameRegex.IsMatch(login)) throw new WojtekException(WojtekCodes.WrongCharacterLogin);
             Login = login;
+        }
+        public void SetUserName(string userName)
+        {
+            if (UserName.Length > 15) throw new WojtekException(WojtekCodes.LongUserName);
+            if (userName.Length < 4) throw new WojtekException(WojtekCodes.ShortUserName);
+            if (String.IsNullOrEmpty(userName)) throw new WojtekException(WojtekCodes.WrongUserName);
+            if (!NameRegex.IsMatch(UserName)) throw new WojtekException(WojtekCodes.WrongUserName);
+            UserName = userName;
         }
         public void SetPassword(string password, IEncrypter encrypter)
         {

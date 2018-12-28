@@ -10,5 +10,6 @@ namespace SerwisProduktow.Infrastructure.ViewModels
     {
         public string Login { get; set; }
         public string Password { get; set; }
+        public string UserName { get; set; }
     }
 }

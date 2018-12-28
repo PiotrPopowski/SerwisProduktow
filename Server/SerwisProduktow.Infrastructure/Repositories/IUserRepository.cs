@@ -18,5 +18,6 @@ namespace SerwisProduktow.Infrastructure.Repositories
         UserDto Login(string login, string password);
         void ChangePassword(int userID, string currentPassword, string newPassword);
         void SetRole(int userID, string role);
+        void SetUserName(string name, int userID);
     }
 }

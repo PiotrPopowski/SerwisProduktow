@@ -74,7 +74,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
             {
                 throw new WojtekException($"Użytkownik o loginie {register.Login} już istnieje!");
             }
-            user = new User(register.Login, register.Password, Role.User, encrypter);
+            user = new User(register.Login, register.Password, Role.User, register.UserName, encrypter);
             users.Add(user);
         }
 
@@ -86,6 +86,16 @@ namespace SerwisProduktow.Infrastructure.Repositories
             else newRole = Role.User;
             user.SetRole(newRole);
             users.Update();
+        }
+        public void SetUserName(string name,  int userID)
+        {
+            var user = users.Get(userID);
+            foreach(User u in users.GetAll())
+            {
+                if (u.UserName == name) throw new WojtekException(WojtekCodes.UserNameTaken); 
+            }
+            user.SetUserName(name);
+            
         }
     }
 }

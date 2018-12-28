@@ -21,12 +21,12 @@ namespace SerwisProduktow.Domain.Concrete
 
         public Service Get(int id)
         {
-            return dBEntities.Services.SingleOrDefault(s => s.ID == id);
+            return dBEntities.Services.Where(x => x.Status == 0).SingleOrDefault(s => s.ID == id);
         }
 
         public IEnumerable<Service> GetAll()
         {
-            return dBEntities.Services.ToList();
+            return dBEntities.Services.Where(x => x.Status == 0).ToList();
         }
 
         public IEnumerable<Comment> GetComments(int serviceID)

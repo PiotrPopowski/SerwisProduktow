@@ -22,5 +22,11 @@ namespace SerwisProduktow.Domain.Exceptions
         public static string WrongCredentials => "Złe dane logowania!";
         public static string UserNotFound => "Nie znaleziono użytkownika!";
         public static string CategoryNotFound => "Nie znaleziono kategori!";
+        public static string WrongUserName => "Zła nazwa użytkownika";
+        public static string LongLogin => "Login za długi! (max 15 znaków)";
+        public static string ShortLogin => "Login zbyt krótki! (min 4 znaki)";
+        public static string LongUserName => "Nazwa użytkownika zbyt długa! (max 15 znaków)";
+        public static string ShortUserName => "Nazwa użytkownika zbyt krótka! (min 4 zanki)";
+        public static string UserNameTaken => "Nazwa użytkownika zajęta!";
     }
 }

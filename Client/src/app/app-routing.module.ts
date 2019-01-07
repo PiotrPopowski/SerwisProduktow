@@ -4,7 +4,8 @@ import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { ServicesComponent } from './services/services.component';
 import { AddServiceComponent } from './add-service/add-service.component';
-import { UserDetailComponent } from './user-detail/user-detail.component'
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { ServiceDetailComponent } from './service-detail/service-detail.component';
 const routes: Routes = [
   {
     path: '',
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'User/',
     component: UserDetailComponent
+  },
+  {
+    path: 'Service/Get/:id',
+    component: ServiceDetailComponent
   }
 ];
 

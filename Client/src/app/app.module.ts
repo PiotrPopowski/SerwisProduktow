@@ -16,6 +16,7 @@ import { AddServiceComponent } from './add-service/add-service.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserService } from './user.service';
 import { Helpers } from './Helpers';
+import { ServiceDetailComponent } from './service-detail/service-detail.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { Helpers } from './Helpers';
     RegisterComponent,
     ServicesComponent,
     AddServiceComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    ServiceDetailComponent
   ],
   imports: [
     BrowserModule,

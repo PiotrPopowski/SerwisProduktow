@@ -37,7 +37,11 @@ const routes: Routes = [
     component: UserDetailComponent
   },
   {
-    path: 'Service/Get/:id',
+    path: 'Service/:id',
+    component: ServiceDetailComponent
+  },
+  {
+    path: 'Service/',
     component: ServiceDetailComponent
   }
 ];

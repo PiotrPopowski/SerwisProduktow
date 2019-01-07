@@ -10,9 +10,13 @@
           </div>
           <div class="card-body">
             <form class="form">
+                <div class="form-group">
+                    <label for="uname1">Login</label>
+                    <input type="text" [(ngModel)]="registerUserData.login" name="login" class="form-control rounded-0" required>
+                  </div>
               <div class="form-group">
                 <label for="uname1">Nazwa użytkownika</label>
-                <input type="text" [(ngModel)]="registerUserData.login" name="login" class="form-control rounded-0" required>
+                <input type="text" [(ngModel)]="registerUserData.userName" name="username" class="form-control rounded-0" required>
               </div>
               <div class="form-group">
                 <label>Hasło</label>

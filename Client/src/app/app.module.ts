@@ -15,6 +15,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserService } from './user.service';
+import { Helpers } from './Helpers';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { UserService } from './user.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, ServicesService, UserService,
+  providers: [AuthService, AuthGuard, ServicesService, UserService, Helpers,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

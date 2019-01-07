@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../services.service';
+import { Helpers } from '../Helpers';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-services',
@@ -9,7 +11,7 @@ import { ServicesService } from '../services.service';
 export class ServicesComponent implements OnInit {
 
   services = []
-  constructor(private _serviceservice: ServicesService) { }
+  constructor(private _serviceservice: ServicesService, public helpers: Helpers, private _router: Router) { }
 
   ngOnInit() {
     this._serviceservice.getservices()
@@ -18,5 +20,12 @@ export class ServicesComponent implements OnInit {
         err => console.log(err)
       )
   }
+
+  redirectToAdd() {
+    this._router.navigate(['/add-service'])
+
+  }
+
+
 
 }

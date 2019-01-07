@@ -43,10 +43,10 @@ namespace SerwisProduktow.Domain.Entities
         }
         public void SetUserName(string userName)
         {
-            if (UserName.Length > 15) throw new WojtekException(WojtekCodes.LongUserName);
+            if (userName.Length > 15) throw new WojtekException(WojtekCodes.LongUserName);
             if (userName.Length < 4) throw new WojtekException(WojtekCodes.ShortUserName);
             if (String.IsNullOrEmpty(userName)) throw new WojtekException(WojtekCodes.WrongUserName);
-            if (!NameRegex.IsMatch(UserName)) throw new WojtekException(WojtekCodes.WrongUserName);
+            if (!NameRegex.IsMatch(userName)) throw new WojtekException(WojtekCodes.WrongUserName);
             UserName = userName;
         }
         public void SetPassword(string password, IEncrypter encrypter)

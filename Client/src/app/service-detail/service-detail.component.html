@@ -6,5 +6,11 @@
       <div class="card-footer text-muted">
         Dodane: {{service.DateOfAddition | date:'dd.MM.yyyy'}} przez <a href="user/{{service.User.ID}}">{{service.User.UserName}}</a>
       </div>
+      <br><br>
+      Komentarze:
+      <div class="col-sm-10">
+        <textarea class="form-control" name="addComment" id="addComment" rows="3"></textarea>
+      </div>
+      <button type="button" (click)="addNewComment()" class="btn btn-success float-right">Skomentuj</button>
     </div>
 </div>

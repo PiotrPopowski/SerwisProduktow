@@ -42,7 +42,7 @@ namespace SerwisProduktow.WebUI.Controllers
             return Ok(services);
         }
 
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
             var service = serviceRepository.Get(id);

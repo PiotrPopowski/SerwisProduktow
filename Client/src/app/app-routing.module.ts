@@ -37,7 +37,7 @@ const routes: Routes = [
     component: UserDetailComponent
   },
   {
-    path: 'Service/:id',
+    path: 'service/:id',
     component: ServiceDetailComponent
   },
   {

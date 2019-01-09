@@ -31,7 +31,7 @@ export class ServiceDetailComponent implements OnInit {
     .subscribe(
       res => {
       },
-      err => console.log(err)
+      err => window.alert(err.error)
     ) 
   }
 }

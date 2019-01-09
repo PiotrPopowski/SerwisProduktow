@@ -17,7 +17,7 @@ export class ServicesComponent implements OnInit {
     this._serviceservice.getservices()
       .subscribe(
         res => this.services = res,
-        err => console.log(err)
+        err => window.alert(err.error)
       )
   }
 

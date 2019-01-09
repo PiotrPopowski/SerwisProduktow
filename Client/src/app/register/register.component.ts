@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
       res => {
         this.loginUser();
       },
-      err => console.log(err)
+      err => window.alert(err.error)
     )      
   }
 
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('UserID', res.User.ID)
         this._router.navigate(['/services'])
       },
-      err => console.log(err)
+      err => window.alert(err.error)
     ) 
   }
 

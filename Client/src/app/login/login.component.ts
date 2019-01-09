@@ -17,6 +17,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  showError(err: string) {
+    document.getElementById("error").innerHTML = err;
+  }
+
   loginUser () {
     this._auth.loginUser(this.loginUserData)
     .subscribe(
@@ -26,7 +30,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('UserID', res.User.ID)
         this._router.navigate(['/services'])
       },
-      err => window.alert(err.error)
+      err => this.showError(err.error)
       
     ) 
   }

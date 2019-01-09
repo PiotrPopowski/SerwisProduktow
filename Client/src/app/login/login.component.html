@@ -17,6 +17,8 @@
             <div class="form-group">
               <label>Hasło</label>
               <input type="password" class="form-control rounded-0" [(ngModel)]="loginUserData.password" name="password" required>
+              <div id="error">
+              </div>
             </div>
             <button type="button" (click)="loginUser()" class="btn btn-success float-right">Zaloguj</button>
           </form>

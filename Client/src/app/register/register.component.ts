@@ -16,13 +16,17 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  showError(error: string) {
+    document.getElementById("error").innerHTML = error;
+  }
+
   registerUser() {
     this._auth.registerUser(this.registerUserData)
     .subscribe(
       res => {
         this.loginUser();
       },
-      err => window.alert(err.error)
+      err => this.showError(err.error)
     )      
   }
 
@@ -35,7 +39,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('UserID', res.User.ID)
         this._router.navigate(['/services'])
       },
-      err => window.alert(err.error)
+      err => this.showError(err.error)
     ) 
   }
 

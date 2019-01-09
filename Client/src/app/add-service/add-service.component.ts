@@ -27,7 +27,8 @@ export class AddServiceComponent implements OnInit {
       res => {
         this._router.navigate(['/services'])
       },
-      err => this.showError(err.error)
+      err => {this.showError(err.error);
+              document.getElementById('serviceDesc').focus();}
     ) 
   }
 

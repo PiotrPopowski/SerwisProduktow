@@ -19,7 +19,7 @@
           <form class="form">
             <div class="form-group">
               <label>Opis Produktu</label>
-              <input type="text" class="form-control rounded-0" [(ngModel)]="serviceData.Descryption" name="Opis" required>
+              <input id="serviceDesc" onfocus="this.value=''" type="text" class="form-control rounded-0" [(ngModel)]="serviceData.Descryption" name="Opis" required>
             </div>
             <div class="form-group">
               <label>Kategoria</label>

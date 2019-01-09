@@ -1,4 +1,11 @@
-<div class="py-5">
+<div *ngIf="!_auth.loggedIn()">
+  Nie jestes zalogowany!
+  <br>
+  <a href="/login">ZALOGUJ SIE</a>
+</div>
+
+
+<div *ngIf="_auth.loggedIn()" class="py-5">
   <div class="row">
     <div class="col-md-6 mx-auto">
       <span class="anchor" id="formService"></span>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../services.service';
 import { Helpers } from '../Helpers';
 import { Router } from '@angular/router'
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-services',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router'
 export class ServicesComponent implements OnInit {
 
   services = []
-  constructor(private _serviceservice: ServicesService, public helpers: Helpers, private _router: Router) { }
+  constructor(private _serviceservice: ServicesService, public helpers: Helpers, private _router: Router, private _auth: AuthService) { }
 
   ngOnInit() {
     this._serviceservice.getservices()

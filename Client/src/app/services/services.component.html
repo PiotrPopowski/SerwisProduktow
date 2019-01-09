@@ -7,7 +7,7 @@
       <p class="mb-1">{{event.Descryption}}</p>
       <small>Dodane przez <a href="/user/{{event.User.ID}}">{{event.User.UserName}}</a></small>
     <div *ngIf="event.User.ID == helpers.localStorageItem('UserID')">
-          <a href="/add-service"><button (click)='redirectToAdd()'>Usuń</button></a>
+          <a *ngIf="_auth.loggedIn()" href="/add-service"><button (click)='redirectToAdd()'>Usuń</button></a>
         </div>
       </a>
         

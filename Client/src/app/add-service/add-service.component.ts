@@ -16,6 +16,10 @@ export class AddServiceComponent implements OnInit {
   ngOnInit() {
   }
 
+  showError(error: string) {
+    document.getElementById("error").innerHTML = error;
+  }
+
   addNewService () {
     console.log(this.serviceData);
     this._auth.addService(this.serviceData)
@@ -23,7 +27,7 @@ export class AddServiceComponent implements OnInit {
       res => {
         this._router.navigate(['/services'])
       },
-      err => console.log(err)
+      err => this.showError(err.error)
     ) 
   }
 

@@ -1,3 +1,12 @@
+<div *ngIf="!_auth.loggedIn()">
+    <br>
+      Musisz być zalogowany, aby przeglądać profile użytkowników!
+      <a href="/login">ZALOGUJ SIĘ</a>. 
+      Nie masz konta? 
+      <a href="/register">ZAŁÓŻ JE TERAZ!</a>
+    </div>
+
+    <div *ngIf="_auth.loggedIn()">
 <div *ngIf="user">
       <div class="card text-center">
         <div class="card-body">
@@ -8,4 +17,5 @@
           Data utworzenia: {{user.Created_at | date:'dd.MM.yyyy'}}
         </div>
       </div>
+</div>
 </div>

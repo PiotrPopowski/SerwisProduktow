@@ -12,15 +12,19 @@
             <form class="form">
                 <div class="form-group">
                     <label for="uname1">Login</label>
-                    <input id="registrationLogin" onfocus="this.value=''" type="text" [(ngModel)]="registerUserData.login" name="login" class="form-control rounded-0" required>
+                    <input id="registrationLogin" type="text" [(ngModel)]="registerUserData.login" name="login" class="form-control rounded-0" required>
                   </div>
               <div class="form-group">
                 <label for="uname1">Nazwa użytkownika</label>
-                <input id="registrationUserName" onfocus="this.value=''" type="text" [(ngModel)]="registerUserData.userName" name="username" class="form-control rounded-0" required>
+                <input id="registrationUserName" type="text" [(ngModel)]="registerUserData.userName" name="username" class="form-control rounded-0" required>
               </div>
               <div class="form-group">
                 <label>Hasło</label>
-                <input id="registrationPass" onfocus="this.value=''" type="password" [(ngModel)]="registerUserData.password" name="password" class="form-control rounded-0"  required>
+                <input id="registrationPass" type="password" [(ngModel)]="registerUserData.password" name="password" class="form-control rounded-0"  required>
+              </div>
+              <div class="form-group">
+                <label>Powtórz hasło</label>
+                <input id="repeatPassword" type="password" name="repeatPass" class="form-control rounded-0" required>
               </div>
               <div class="error" id="error">
               </div>

@@ -19,18 +19,32 @@ export class RegisterComponent implements OnInit {
   showError(error: string) {
     document.getElementById("error").innerHTML = error;
   }
-
+  clearPassword(){
+    (<HTMLInputElement>document.getElementById("registrationPass")).value="";
+    (<HTMLInputElement>document.getElementById("repeatPassword")).value="";
+  }
+  clearLogin(){
+    (<HTMLInputElement>document.getElementById("registrationLogin")).value="";
+  }
+  clearUserName(){
+    (<HTMLInputElement>document.getElementById("registrationUserName")).value="";
+  }
   registerUser() {
-    this._auth.registerUser(this.registerUserData)
-    .subscribe(
-      res => {
-        this.loginUser();
-      },
-      err => {this.showError(err.error);
-          document.getElementById('registrationLogin').focus();
-        document.getElementById('registrationUserName').focus();
-      document.getElementById('registrationPass').focus();}
-    )      
+    if((<HTMLInputElement>document.getElementById('repeatPassword')).value==(<HTMLInputElement>document.getElementById('registrationPass')).value)
+    {
+      this._auth.registerUser(this.registerUserData)
+      .subscribe(
+        res => {
+          this.loginUser();
+        },
+        err => {this.showError(err.error);
+        }
+      )
+    }
+    else{
+      this.showError("Podane hasła są niezgodne");
+      this.clearPassword();
+    }      
   }
 
   loginUser () {

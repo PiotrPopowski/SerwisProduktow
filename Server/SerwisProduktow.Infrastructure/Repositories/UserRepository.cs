@@ -72,8 +72,14 @@ namespace SerwisProduktow.Infrastructure.Repositories
             var user = users.Get(register.Login);
             if (user != null)
             {
-                throw new WojtekException($"Użytkownik o loginie {register.Login} już istnieje!");
+                throw new WojtekException(WojtekCodes.LoginTaken);
             }
+
+            foreach (User u in users.GetAll())
+            {
+                if (u.UserName == register.UserName) throw new WojtekException(WojtekCodes.UserNameTaken);
+            }
+
             user = new User(register.Login, register.Password, Role.User, register.UserName, encrypter);
             users.Add(user);
         }

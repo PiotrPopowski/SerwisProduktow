@@ -11,7 +11,7 @@ namespace SerwisProduktow.Domain.Exceptions
         public static string ShortComment => "Komentarz zbyt krótki! (min 20 znaków)";
         public static string LongComment => "Komentarz zbyt długi! (max 190 znaków)";
         public static string ShortDescryption => "Opis zbyt krótki! (min 50 znaków)";
-        public static string LongDescryption => "Opis zbyt dług! (max 250 znaków)";
+        public static string LongDescryption => "Opis zbyt długi! (max 250 znaków)";
         public static string NullLogin => "Pusty login!";
         public static string WrongCharacterLogin => "Niedozwolone znaki w Loginie!";
         public static string NullPassword => "Białe znaki lub brak hasła!";
@@ -25,6 +25,7 @@ namespace SerwisProduktow.Domain.Exceptions
         public static string WrongUserName => "Zła nazwa użytkownika";
         public static string LongLogin => "Login za długi! (max 15 znaków)";
         public static string ShortLogin => "Login zbyt krótki! (min 4 znaki)";
+        public static string LoginTaken => "Użytkownik o takim loginie już istnieje";
         public static string LongUserName => "Nazwa użytkownika zbyt długa! (max 15 znaków)";
         public static string ShortUserName => "Nazwa użytkownika zbyt krótka! (min 4 zanki)";
         public static string UserNameTaken => "Nazwa użytkownika zajęta!";

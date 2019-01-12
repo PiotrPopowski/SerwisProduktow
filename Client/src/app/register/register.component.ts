@@ -37,7 +37,30 @@ export class RegisterComponent implements OnInit {
         res => {
           this.loginUser();
         },
-        err => {this.showError(err.error);
+        err => {
+          switch(err.statusText)
+          {
+            case "ShortLogin":
+            case "LongLogin":
+            case "NullLogin":
+            case "WrongCharacterLogin":
+            case "LoginTaken":
+              this.clearLogin();
+              this.showError(err.error);
+              break;
+            case "ShortUserName":
+            case "LongUserName":
+            case "UserNameTaken":
+              this.clearUserName();
+              this.showError(err.error);
+              break;
+            case "ShortPassword":
+            case "LongPassword":
+            case "NullPassword":
+              this.clearPassword();
+              this.showError(err.error);
+              break;
+          }
         }
       )
     }

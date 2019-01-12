@@ -120,7 +120,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Exceptions\ErrorCodes.cs" />
+    <Compile Include="Exceptions\WojtekCodes.cs" />
     <Compile Include="Exceptions\WojtekException.cs" />
     <Compile Include="Interfaces\IEncrypter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -53,5 +53,10 @@ namespace SerwisProduktow.WebUI.Controllers
         {
             serviceRepository.Vote(userID, rate, serviceID);
         }
+        
+        public void Remove(int serviceID, int userID)
+        {
+        
+        }
     }
 }

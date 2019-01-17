@@ -27,7 +27,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
             if (user == null) throw new WojtekException(WojtekCodes.UserNotFound);
             if (category == null) throw new WojtekException(WojtekCodes.CategoryNotFound);
 
-            var newService = new Service(user, category, rating, service.Descryption);
+            var newService = new Service(user, category, service.Name, rating, service.Descryption);
             services.Add(newService);
         }
 

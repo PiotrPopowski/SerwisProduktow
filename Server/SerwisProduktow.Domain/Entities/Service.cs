@@ -13,7 +13,7 @@ namespace SerwisProduktow.Domain.Entities
         public string Descryption { get; protected set; }
         public int Status { get; protected set; }
         public DateTime DateOfAddition { get; protected set; }
-
+        public string ServiceName { get; protected set; }
         public virtual User User { get; protected set; }
         public virtual Category_Services Category { get; protected set; }
         public virtual Rating Rating { get; protected set; }
@@ -23,11 +23,12 @@ namespace SerwisProduktow.Domain.Entities
         {
 
         }
-        public Service(User user, Category_Services category, Rating rating, string descryption)
+        public Service(User user, Category_Services category, string servicename, Rating rating, string descryption)
         {
             User = user;
             SetCategory(category);
             SetDescryption(descryption);
+            SetServiceName(servicename);
             SetStatus(0);
             Rating = rating;
             Comments = new HashSet<Comment>();
@@ -52,6 +53,11 @@ namespace SerwisProduktow.Domain.Entities
         {
             Comments.Add(comment);
         }
-
+        public void SetServiceName(string servicename)
+        {
+            if (servicename.Length < 4) throw new WojtekException(WojtekCodes.ShorServiceName);
+            if (servicename.Length > 20) throw new WojtekException(WojtekCodes.LongServiceName);
+            ServiceName = servicename;
+        }
     }
 }

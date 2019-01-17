@@ -11,5 +11,6 @@ namespace SerwisProduktow.Infrastructure.ViewModels
         public int UserID { get; set; } 
         public string Descryption { get; set; }
         public int CategoryID { get; set; }
+        public string Name { get; set; }
     }
 }

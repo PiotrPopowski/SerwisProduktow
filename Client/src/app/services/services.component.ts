@@ -17,13 +17,15 @@ export class ServicesComponent implements OnInit {
   ngOnInit() {
     this._serviceservice.getservices()
       .subscribe(
-        res => this.services = res,
-        err => window.alert(err.error)
+        res => this.services = res
       )
   }
 
-  redirectToAdd() {
-    this._router.navigate(['/add-service'])
+  remove(id: number) {
+    this._serviceservice.remove(id)
+      .subscribe(
+        res => this.ngOnInit()
+      )
 
   }
 

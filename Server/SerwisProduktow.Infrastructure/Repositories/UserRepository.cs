@@ -84,6 +84,15 @@ namespace SerwisProduktow.Infrastructure.Repositories
             users.Add(user);
         }
 
+        public void Remove(int userID, int userIdToRemove)
+        {
+            User currentUser = users.Get(userID);
+            if(currentUser.Role.Name=="Admin" || currentUser.ID==userIdToRemove)
+                users.Remove(userIdToRemove);
+            else
+                throw new WojtekException(WojtekCodes.PermissionDenied);
+        }
+
         public void SetRole(int userID, string role)
         {
             var user = users.Get(userID);

@@ -15,7 +15,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
         void Add(ServiceModel service);
         void AddComment(CommentModel comment);
         void Vote(int userID, int rate, int serviceID);
-        void Remove(int serviceID);
+        void Remove(int serviceID, int userID, string role="");
         void SetCategory(int serviceID, int categoryID);
     }
 }

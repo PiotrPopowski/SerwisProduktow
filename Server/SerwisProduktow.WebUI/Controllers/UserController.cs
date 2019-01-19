@@ -56,5 +56,13 @@ namespace SerwisProduktow.WebUI.Controllers
             token.User = user;
             return Ok(token);
         }
+
+        [HttpDelete]
+        public IHttpActionResult Remove(int userID)
+        {
+            int currentUser = int.Parse(User.Identity.Name);
+            userRepository.Remove(currentUser, userID);
+            return Ok();
+        }
     }
 }

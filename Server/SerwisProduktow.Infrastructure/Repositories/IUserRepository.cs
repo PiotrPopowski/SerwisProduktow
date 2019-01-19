@@ -15,6 +15,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
         UserDto Get(int id);
         IEnumerable<UserDto> GetAll();
         void Register(UserModel register);
+        void Remove(int userID, int userIdToRemove);
         UserDto Login(string login, string password);
         void ChangePassword(int userID, string currentPassword, string newPassword);
         void SetRole(int userID, string role);

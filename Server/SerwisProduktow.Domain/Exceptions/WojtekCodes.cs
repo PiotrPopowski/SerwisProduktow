@@ -31,5 +31,6 @@ namespace SerwisProduktow.Domain.Exceptions
         public static string UserNameTaken => "Nazwa użytkownika zajęta!";
         public static string ShorServiceName => "Zbyt krótka nazwa usługi! (min 4 znaki)";
         public static string LongServiceName => "Zbyt dluga nazwa usługi! (max 20 znaków)";
+        public static string PermissionDenied => "Nie masz uprawnień do tego zasobu.";
     }
 }

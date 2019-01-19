@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http'
 export class ServicesService {
 
   private _servicesUrl = "http://localhost:63819/api/Service/GetAll";
-  private _specialservicesUrl = "http://localhost:63819/api/User/Get/";
+  private _detailUserUrl = "http://localhost:63819/api/User/Get/";
   private _gettingService = "http://localhost:63819/api/Service/Get/";
-
+  private _removeServiceUrl = "http://localhost:63819/api/Service/Remove/"
   constructor(private http: HttpClient) { }
 
   getservices() {
@@ -15,10 +15,14 @@ export class ServicesService {
   }
 
   getSpecialservices() {
-    return this.http.get<any>(this._specialservicesUrl + localStorage.getItem('UserID'), { withCredentials: false })
+    return this.http.get<any>(this._detailUserUrl + localStorage.getItem('UserID'), { withCredentials: false })
   }
 
   getService(id: number) {
     return this.http.get<any>(this._gettingService + id);
+  }
+
+  remove(id: number){
+    return this.http.delete(this._removeServiceUrl + id, { withCredentials: true });
   }
 }

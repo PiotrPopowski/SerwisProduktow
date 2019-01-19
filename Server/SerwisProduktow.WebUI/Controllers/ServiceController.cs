@@ -5,7 +5,7 @@ using SerwisProduktow.WebUI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.Results;
 
@@ -54,9 +54,13 @@ namespace SerwisProduktow.WebUI.Controllers
             serviceRepository.Vote(userID, rate, serviceID);
         }
         
-        public void Remove(int serviceID, int userID)
+        [HttpDelete]
+        public void Remove(int serviceID)
         {
-            
+            int userID = int.Parse(User?.Identity?.Name);
+            var identity = User.Identity as ClaimsIdentity;
+            string role = identity.FindFirst(identity.RoleClaimType).Value;
+            serviceRepository.Remove(serviceID, userID, role);
         }
     }
 }

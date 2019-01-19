@@ -51,9 +51,13 @@ namespace SerwisProduktow.Infrastructure.Repositories
             return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
         }
 
-        public void Remove(int serviceID)
+        public void Remove(int serviceID, int userID, string role="")
         {
-            services.Remove(serviceID);
+            var service = services.Get(serviceID);
+            if (role=="Admin" || service.User.ID == userID)
+                services.Remove(serviceID);
+            else
+                throw new WojtekException(WojtekCodes.PermissionDenied);
         }
 
         public void Vote(int userID, int rate, int serviceID)

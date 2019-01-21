@@ -13,6 +13,6 @@ namespace SerwisProduktow.Infrastructure.DTO
         public CategoryDto Category { get; set; }
         public RatingDto Rating { get; set; }
         public IEnumerable<CommentDto> Comments { get; set; }
-        public string Name { get; set; }
+        public string ServiceName { get; set; }
     }
 }

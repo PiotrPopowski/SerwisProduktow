@@ -20,6 +20,10 @@
         <div class="card-body">
           <form class="form">
             <div class="form-group">
+              <label>Nazwa Produktu</label>
+                <div class="form-group">
+              <input id="serviceName" type="text" class="form-control rounded-0" [(ngModel)]="serviceData.Name" name="Nazwa" required>
+              </div>
               <label>Opis Produktu</label>
               <input id="serviceDesc" type="text" class="form-control rounded-0" [(ngModel)]="serviceData.Descryption" name="Opis" required>
             </div>

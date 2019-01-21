@@ -53,8 +53,9 @@ namespace SerwisProduktow.WebUI.Controllers
         {
             serviceRepository.Vote(userID, rate, serviceID);
         }
-        
-        [HttpDelete]
+
+        [Route("api/Service/Remove")]
+        [HttpPost]
         public void Remove(int serviceID)
         {
             int userID = int.Parse(User?.Identity?.Name);

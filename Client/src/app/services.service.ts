@@ -23,6 +23,6 @@ export class ServicesService {
   }
 
   remove(id: number){
-    return this.http.delete(this._removeServiceUrl + id, { withCredentials: true });
+    return this.http.post(this._removeServiceUrl + id, { withCredentials: true });
   }
 }

@@ -12,21 +12,17 @@ import { AuthService } from '../auth.service';
 export class ServicesComponent implements OnInit {
 
   services = []
-  constructor(private _serviceservice: ServicesService, public helpers: Helpers, private _router: Router, private _auth: AuthService) { }
+  constructor(private _servicesService: ServicesService, public helpers: Helpers, private _router: Router, private _auth: AuthService) { }
 
   ngOnInit() {
-    this._serviceservice.getservices()
+    this._servicesService.getServices()
       .subscribe(
         res => this.services = res
-      )
+          )
   }
 
   remove(id: number) {
-    this._serviceservice.remove(id)
-      .subscribe(
-        res => this.ngOnInit()
-      )
-
+    this._servicesService.remove(id).subscribe(res => this.ngOnInit())
   }
 
 

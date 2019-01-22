@@ -26,12 +26,6 @@ export class ServiceDetailComponent implements OnInit {
   }
 
   addNewComment () {
-    console.log(this.commentData);
-    this._auth.addComment(this.commentData)
-    .subscribe(
-      res => {
-      },
-      err => window.alert(err.error)
-    ) 
+    console.log(this.commentData); 
   }
 }

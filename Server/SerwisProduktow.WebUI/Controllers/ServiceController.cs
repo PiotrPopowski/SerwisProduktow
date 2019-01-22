@@ -54,14 +54,14 @@ namespace SerwisProduktow.WebUI.Controllers
             serviceRepository.Vote(userID, rate, serviceID);
         }
 
-        [Route("api/Service/Remove")]
-        [HttpPost]
-        public void Remove(int serviceID)
+        [HttpDelete]
+        public IHttpActionResult Remove(int id)
         {
             int userID = int.Parse(User?.Identity?.Name);
             var identity = User.Identity as ClaimsIdentity;
             string role = identity.FindFirst(identity.RoleClaimType).Value;
-            serviceRepository.Remove(serviceID, userID, role);
+            serviceRepository.Remove(id, userID, role);
+            return Ok();
         }
     }
 }

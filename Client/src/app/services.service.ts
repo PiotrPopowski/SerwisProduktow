@@ -8,10 +8,12 @@ export class ServicesService {
   private _detailUserUrl = "http://localhost:63819/api/User/Get/";
   private _gettingService = "http://localhost:63819/api/Service/Get/";
   private _removeServiceUrl = "http://localhost:63819/api/Service/Remove/"
+  private _addingServiceUrl = "http://localhost:63819/api/Service/addService";
+
   constructor(private http: HttpClient) { }
 
-  getservices() {
-    return this.http.get<any>(this._servicesUrl)
+  getServices() {
+    return this.http.get<any>(this._servicesUrl);
   }
 
   getSpecialservices() {
@@ -22,7 +24,12 @@ export class ServicesService {
     return this.http.get<any>(this._gettingService + id);
   }
 
-  remove(id: number){
-    return this.http.post(this._removeServiceUrl + id, { withCredentials: true });
+  addService(service) {
+    service.UserID=+localStorage.getItem('UserID');
+    return this.http.post<any>(this._addingServiceUrl, service, { withCredentials: true });
+  }
+
+  remove(id:number){
+    return this.http.delete<any>(this._removeServiceUrl + id, { withCredentials: true });
   }
 }

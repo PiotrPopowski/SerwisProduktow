@@ -7,8 +7,6 @@ export class AuthService {
 
   private _registerUrl = "http://localhost:63819/api/User/Register";
   private _loginUrl = "http://localhost:63819/api/Login";
-  private _addingServiceUrl = "http://localhost:63819/api/Service/addService";
-  private _addingCommentUrl = "http://localhost:63819/api/Service/AddComment";
 
   constructor(private http: HttpClient,
               private _router: Router) { }
@@ -19,16 +17,6 @@ export class AuthService {
 
   loginUser(user) {
     return this.http.post<any>(this._loginUrl, user)
-  }
-
-  addService(service) {
-    service.UserID=+localStorage.getItem('UserID');
-    return this.http.post<any>(this._addingServiceUrl, service, { withCredentials: true });
-  }
-
-  addComment(comment) {
-
-    return this.http.post<any>(this._addingCommentUrl, comment, { withCredentials: true});
   }
 
   logoutUser() {

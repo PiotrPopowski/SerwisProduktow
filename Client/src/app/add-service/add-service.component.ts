@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServicesService } from '../services.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class AddServiceComponent implements OnInit {
 
   serviceData = {};
 
-  constructor(private _router : Router, private _auth : AuthService) { }
+  constructor(private _router : Router, private services : ServicesService, private _auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -22,7 +23,7 @@ export class AddServiceComponent implements OnInit {
 
   addNewService () {
     console.log(this.serviceData);
-    this._auth.addService(this.serviceData)
+    this.services.addService(this.serviceData)
     .subscribe(
       res => {
         this._router.navigate(['/services'])

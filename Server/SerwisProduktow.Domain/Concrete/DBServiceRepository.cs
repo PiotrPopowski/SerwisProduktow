@@ -46,6 +46,7 @@ namespace SerwisProduktow.Domain.Concrete
         {
             var service = Get(serviceID);
             service.SetStatus(1);
+            Update();
         }
 
         public User GetUser(int userID)

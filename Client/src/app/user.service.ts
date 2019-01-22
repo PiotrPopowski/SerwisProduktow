@@ -13,6 +13,6 @@ export class UserService {
   }
 
   removeUser(id: number){
-    return this.http.delete(this._removeUserUrl + id);
+    return this.http.delete(this._removeUserUrl+ id);
   }
 }

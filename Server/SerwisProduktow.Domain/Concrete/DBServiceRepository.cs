@@ -29,9 +29,9 @@ namespace SerwisProduktow.Domain.Concrete
             return dBEntities.Services.Where(x => x.Status == 0).ToList();
         }
 
-        public IEnumerable<Service> GetAllUserServices(User id)
+        public IEnumerable<Service> GetAllUserServices(int id)
         {
-            return dBEntities.Services.Where(x => x.User == id).ToList();
+            return dBEntities.Services.Where(x => x.User.ID == id).ToList();
         }
 
         public IEnumerable<Comment> GetComments(int serviceID)

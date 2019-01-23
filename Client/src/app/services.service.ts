@@ -9,6 +9,7 @@ export class ServicesService {
   private _gettingService = "http://localhost:63819/api/Service/Get/";
   private _removeServiceUrl = "http://localhost:63819/api/Service/Remove/"
   private _addingServiceUrl = "http://localhost:63819/api/Service/addService";
+  private _addingCommentUrl = "http://localhost:63819/api/Service/AddComment";
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +28,12 @@ export class ServicesService {
   addService(service) {
     service.UserID=+localStorage.getItem('UserID');
     return this.http.post<any>(this._addingServiceUrl, service, { withCredentials: true });
+  }
+
+  addComment(content, serviceID){
+    var userID=+localStorage.getItem('UserID');
+    var comment={userID, content, serviceID};
+    return this.http.post<any>(this._addingCommentUrl,comment, { withCredentials: true });
   }
 
   remove(id:number){

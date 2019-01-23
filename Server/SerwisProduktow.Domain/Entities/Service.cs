@@ -56,7 +56,7 @@ namespace SerwisProduktow.Domain.Entities
         public void SetServiceName(string servicename)
         {
             if (servicename.Length < 4) throw new WojtekException(WojtekCodes.ShorServiceName);
-            if (servicename.Length > 20) throw new WojtekException(WojtekCodes.LongServiceName);
+            if (servicename.Length > 100) throw new WojtekException(WojtekCodes.LongServiceName);
             ServiceName = servicename;
         }
     }

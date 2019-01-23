@@ -11,7 +11,6 @@ import { AuthService } from '../auth.service';
 })
 export class ServiceDetailComponent implements OnInit {
   service;
-  commentData = {};
 
 
   constructor(private servicesService: ServicesService, private route: ActivatedRoute, private _auth : AuthService) { }
@@ -25,7 +24,8 @@ export class ServiceDetailComponent implements OnInit {
       .subscribe(service => this.service = service);
   }
 
-  addNewComment () {
-    console.log(this.commentData); 
+  addNewComment(comment: string) {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.servicesService.addComment(comment, id).subscribe();
   }
 }

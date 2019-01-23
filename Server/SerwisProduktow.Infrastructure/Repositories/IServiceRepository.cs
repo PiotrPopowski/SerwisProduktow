@@ -17,5 +17,6 @@ namespace SerwisProduktow.Infrastructure.Repositories
         void Vote(int userID, int rate, int serviceID);
         void Remove(int serviceID, int userID, string role="");
         void SetCategory(int serviceID, int categoryID);
+        IEnumerable<ServiceDto> GetAllUserServices(int id);
     }
 }

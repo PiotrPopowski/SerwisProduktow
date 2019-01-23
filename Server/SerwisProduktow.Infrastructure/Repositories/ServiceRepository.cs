@@ -51,6 +51,12 @@ namespace SerwisProduktow.Infrastructure.Repositories
             return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
         }
 
+        public IEnumerable<ServiceDto> GetAllUserServices(int id)
+        {
+            var service = services.GetAllUserServices(id);
+            return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
+        }
+
         public void Remove(int serviceID, int userID, string role="")
         {
             var service = services.Get(serviceID);

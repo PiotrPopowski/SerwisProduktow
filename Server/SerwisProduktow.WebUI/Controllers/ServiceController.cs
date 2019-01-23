@@ -43,6 +43,13 @@ namespace SerwisProduktow.WebUI.Controllers
         }
 
         [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetAllUserServices(int id)
+        {
+            var service = serviceRepository.GetAllUserServices(id);
+            return Ok(service);
+        }
+
+        [HttpGet, AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
             var service = serviceRepository.Get(id);

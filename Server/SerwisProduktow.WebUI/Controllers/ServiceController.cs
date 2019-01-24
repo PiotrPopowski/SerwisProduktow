@@ -36,16 +36,16 @@ namespace SerwisProduktow.WebUI.Controllers
         }
 
         [HttpGet, AllowAnonymous]
-        public IHttpActionResult GetAll()
+        public IHttpActionResult GetAll(int page, int count = 10)
         {
-            var services = serviceRepository.GetAll();
+            var services = serviceRepository.GetAll(page, count);
             return Ok(services);
         }
 
         [HttpGet, AllowAnonymous]
-        public IHttpActionResult GetAllUserServices(int id)
+        public IHttpActionResult GetAllUserServices(int id, int page, int count = 10)
         {
-            var service = serviceRepository.GetAllUserServices(id);
+            var service = serviceRepository.GetAllUserServices(id, page, count);
             return Ok(service);
         }
 

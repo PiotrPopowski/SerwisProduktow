@@ -14,7 +14,7 @@ namespace SerwisProduktow.WebUI.App_Start
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            config.EnableCors(new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*"));
+            config.EnableCors(new EnableCorsAttribute("*", headers: "*", methods: "*"));
             config.Filters.Add(new AuthorizeAttribute());
             config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
 

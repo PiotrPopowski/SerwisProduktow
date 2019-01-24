@@ -45,15 +45,15 @@ namespace SerwisProduktow.Infrastructure.Repositories
             return Mappers.AutoMapperConfig.Initialize().Map<Service, ServiceDto>(service);
         }
 
-        public IEnumerable<ServiceDto> GetAll()
+        public IEnumerable<ServiceDto> GetAll(int page, int count = 10)
         {
-            var service = services.GetAll();
+            var service = services.GetAll(page, count);
             return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
         }
 
-        public IEnumerable<ServiceDto> GetAllUserServices(int id)
+        public IEnumerable<ServiceDto> GetAllUserServices(int id, int page, int count = 10)
         {
-            var service = services.GetAllUserServices(id);
+            var service = services.GetAllUserServices(id, page, count);
             return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
         }
 

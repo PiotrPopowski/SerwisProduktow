@@ -24,14 +24,14 @@ namespace SerwisProduktow.Domain.Concrete
             return dBEntities.Services.Where(x => x.Status == 0).SingleOrDefault(s => s.ID == id);
         }
 
-        public IEnumerable<Service> GetAll()
+        public IEnumerable<Service> GetAll(int page, int count=10)
         {
-            return dBEntities.Services.Where(x => x.Status == 0).ToList();
+            return dBEntities.Services.OrderBy(s => s.DateOfAddition).Where(x => x.Status == 0).Skip((page -1)*count).ToList();
         }
 
-        public IEnumerable<Service> GetAllUserServices(int id)
+        public IEnumerable<Service> GetAllUserServices(int id, int page, int count=10)
         {
-            return dBEntities.Services.Where(x => x.User.ID == id).ToList();
+            return dBEntities.Services.OrderBy(s => s.DateOfAddition).Where(x => x.User.ID == id && x.Status == 0).Skip((page-1)*count).ToList();
         }
 
         public IEnumerable<Comment> GetComments(int serviceID)

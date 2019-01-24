@@ -11,12 +11,12 @@ namespace SerwisProduktow.Infrastructure.Repositories
     public interface IServiceRepository
     {
         ServiceDto Get(int id);
-        IEnumerable<ServiceDto> GetAll();
+        IEnumerable<ServiceDto> GetAll(int page, int count = 10);
         void Add(ServiceModel service);
         void AddComment(CommentModel comment);
         void Vote(int userID, int rate, int serviceID);
         void Remove(int serviceID, int userID, string role="");
         void SetCategory(int serviceID, int categoryID);
-        IEnumerable<ServiceDto> GetAllUserServices(int id);
+        IEnumerable<ServiceDto> GetAllUserServices(int id, int page, int count = 10);
     }
 }

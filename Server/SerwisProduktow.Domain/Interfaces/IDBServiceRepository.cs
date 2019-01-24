@@ -7,8 +7,8 @@ namespace SerwisProduktow.Domain.Repositories
     {
         Service Get(int id);
         User GetUser(int userID);
-        IEnumerable<Service> GetAll();
-        IEnumerable<Service> GetAllUserServices(int id);
+        IEnumerable<Service> GetAll(int page, int count = 10);
+        IEnumerable<Service> GetAllUserServices(int id, int page, int count = 10);
         IEnumerable<Comment> GetComments(int serviceID);
         Category_Services GetCategory(int categoryID);
         void Add(Service service);

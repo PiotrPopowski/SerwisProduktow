@@ -6,7 +6,7 @@
 
         <span class="badge">Dodane: {{service.DateOfAddition | date:'dd.MM.yyyy'}} przez <a href="user/{{service.User.ID}}">{{service.User.UserName}}</a></span>
         <div>
-          <span class="badge badge-info">Tag</span>
+          <span class="badge badge-info">{{service.Category.Name}}</span>
         </div>  
       </div>
       <br><br><br>

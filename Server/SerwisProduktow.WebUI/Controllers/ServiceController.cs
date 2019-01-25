@@ -58,6 +58,13 @@ namespace SerwisProduktow.WebUI.Controllers
         }
 
         [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetTop(int count, string category)
+        {
+            var service = serviceRepository.GetTop(count, category);
+            return Ok(service);
+        }
+
+        [HttpGet, AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
             var service = serviceRepository.Get(id);

@@ -27,6 +27,11 @@ namespace SerwisProduktow.Infrastructure.Repositories
             if (user == null) throw new WojtekException(WojtekCodes.UserNotFound);
             if (category == null) throw new WojtekException(WojtekCodes.CategoryNotFound);
 
+            foreach (Service s in services.GetAllUserTwo(service.UserID))
+            {
+                if (s.ServiceName == service.Name) throw new WojtekException(WojtekCodes.ActiveName);
+            }
+
             var newService = new Service(user, category, service.Name, rating, service.Descryption);
             services.Add(newService);
         }
@@ -54,6 +59,18 @@ namespace SerwisProduktow.Infrastructure.Repositories
         public IEnumerable<ServiceDto> GetAllUserServices(int id, int page, int count = 10)
         {
             var service = services.GetAllUserServices(id, page, count);
+            return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
+        }
+
+        public IEnumerable<ServiceDto> GetTop(int count, string category)
+        {
+            var service = services.GetTop(count, category);
+            return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
+        }
+
+        public IEnumerable<ServiceDto> GetAllUserTwo(int id)
+        {
+            var service = services.GetAllUserTwo(id);
             return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Service>, IEnumerable<ServiceDto>>(service);
         }
 

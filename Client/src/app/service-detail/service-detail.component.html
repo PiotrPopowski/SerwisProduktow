@@ -10,7 +10,7 @@
         </div>  
       </div>
       <br><br><br>
-      <div class="col-sm-10">
+      <div class="mt-5 col-sm-10">
       <div *ngIf="!_auth.loggedIn()">
         Komentować i oceniać mogą tylko zalogowani użytkownicy!
       </div>
@@ -25,7 +25,7 @@
   <br><br>
   <div class="col-md-10">
   <div class="card">
-    <div *ngFor="let comment of service.Comments">
+    <div *ngFor="let comment of comments">
       <div class="card-body">
 	        <div class="row">
             <div class="col-md-12">
@@ -42,4 +42,22 @@
     </div>
   </div>
 </div>
+<div class="row col-md-5">
+    <div aria-label="..." class="mx-auto">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link" *ngIf="currentPage!=1" (click)='getComments(currentPage-1)'>{{currentPage-1}}</button>
+        </li>
+        <li class="page-item active">
+          <button class="page-link">{{currentPage}}</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)='getComments(currentPage+1)'>{{currentPage+1}}</button>
+        </li>
+        <li class="page-item">
+            <button class="page-link" (click)='getComments(currentPage+2)' *ngIf="currentPage==1">{{currentPage+2}}</button>
+          </li>
+      </ul>
+    </div>
+  </div>
 </div>

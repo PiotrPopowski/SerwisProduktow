@@ -12,10 +12,10 @@ namespace SerwisProduktow.Domain.Entities
     {
         public int ID { get; protected set; }
         public string Content { get; protected set; }
+        public int ServiceID { get; protected set; }
         public DateTime DateOfAddition { get; protected set; }
 
         public virtual User User { get; protected set; }
-        public virtual Service Service { get; protected set; }
 
         protected Comment()
         {
@@ -25,7 +25,7 @@ namespace SerwisProduktow.Domain.Entities
         {
             SetContent(content);
             User = user;
-            Service = service;
+            ServiceID = service.ID;
             DateOfAddition = DateTime.Now;
         }
 

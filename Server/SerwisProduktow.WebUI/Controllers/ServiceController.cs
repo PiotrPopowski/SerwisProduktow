@@ -30,9 +30,10 @@ namespace SerwisProduktow.WebUI.Controllers
 
         [Route("api/Service/AddComment")]
         [HttpPost]
-        public void AddComment([FromBody]CommentModel comment)
+        public IHttpActionResult AddComment([FromBody]CommentModel comment)
         {
             serviceRepository.AddComment(comment);
+            return Ok();
         }
 
         [HttpGet, AllowAnonymous]
@@ -40,6 +41,13 @@ namespace SerwisProduktow.WebUI.Controllers
         {
             var services = serviceRepository.GetAll(page, count);
             return Ok(services);
+        }
+
+        [HttpGet, AllowAnonymous]
+        public IHttpActionResult GetComments(int serviceID, int page, int count = 10)
+        {
+            var comments = serviceRepository.GetComments(serviceID, page, count);
+            return Ok(comments);
         }
 
         [HttpGet, AllowAnonymous]

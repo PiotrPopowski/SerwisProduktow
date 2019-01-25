@@ -80,5 +80,12 @@ namespace SerwisProduktow.Infrastructure.Repositories
             service.SetCategory(category);
             services.Update();
         }
+
+        public IEnumerable<CommentDto> GetComments(int serviceID, int page, int count = 10)
+        {
+            var service = services.Get(serviceID);
+            var comments = service.Comments.OrderByDescending(s => s.DateOfAddition).Skip((page - 1) * count).Take(count).ToList();
+            return Mappers.AutoMapperConfig.Initialize().Map<IEnumerable<Comment>, IEnumerable<CommentDto>>(comments);
+        }
     }
 }

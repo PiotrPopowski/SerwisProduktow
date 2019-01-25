@@ -12,6 +12,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
     {
         ServiceDto Get(int id);
         IEnumerable<ServiceDto> GetAll(int page, int count = 10);
+        IEnumerable<CommentDto> GetComments(int serviceID, int page, int count = 10);
         void Add(ServiceModel service);
         void AddComment(CommentModel comment);
         void Vote(int userID, int rate, int serviceID);

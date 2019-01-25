@@ -17,7 +17,7 @@ namespace SerwisProduktow.Domain.Entities
         public virtual User User { get; protected set; }
         public virtual Category_Services Category { get; protected set; }
         public virtual Rating Rating { get; protected set; }
-        public virtual ICollection<Comment> Comments { get; protected set; }
+        public ICollection<Comment> Comments { get; protected set; }
 
         protected Service()
         {

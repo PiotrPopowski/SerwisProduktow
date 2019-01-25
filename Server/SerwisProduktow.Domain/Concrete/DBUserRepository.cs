@@ -31,7 +31,7 @@ namespace SerwisProduktow.Domain.Concrete
 
         public IEnumerable<User> GetAll()
         {
-            return dBEntities.Users.ToList();
+            return dBEntities.Users.OrderByDescending(u=>u.Created_at).ToList();
         }
 
         public void Remove(int id)

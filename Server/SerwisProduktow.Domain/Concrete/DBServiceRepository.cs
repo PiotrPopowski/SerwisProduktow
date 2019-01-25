@@ -1,4 +1,5 @@
 ﻿using SerwisProduktow.Domain.Entities;
+using System.Data.Entity;
 using SerwisProduktow.Domain.Repositories;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,27 +22,25 @@ namespace SerwisProduktow.Domain.Concrete
 
         public Service Get(int id)
         {
-            return dBEntities.Services.Where(x => x.Status == 0).SingleOrDefault(s => s.ID == id);
+            using (var dBEntities = new DBEntities())
+            {
+                return dBEntities.Services.Include(x=>x.Comments.Select(c=>c.User)).Include("User").Include("Rating").Include("Category").FirstOrDefault(s => s.ID == id && s.Status == 0);
+            }
         }
 
         public IEnumerable<Service> GetAll(int page, int count=10)
         {
-            return dBEntities.Services.OrderBy(s => s.DateOfAddition).Where(x => x.Status == 0).Skip((page -1)*count).Take(count);
+            return dBEntities.Services.OrderByDescending(s => s.DateOfAddition).Where(x => x.Status == 0).Skip((page -1)*count).Take(count).ToList();
         }
 
         public IEnumerable<Service> GetAllUserServices(int id, int page, int count=10)
         {
-            return dBEntities.Services.OrderBy(s => s.DateOfAddition).Where(x => x.User.ID == id && x.Status == 0).Skip((page-1)*count).Take(count);
-        }
-
-        public IEnumerable<Comment> GetComments(int serviceID)
-        {
-            return Get(serviceID).Comments.ToList();
+            return dBEntities.Services.OrderByDescending(s => s.DateOfAddition).Where(x => x.User.ID == id && x.Status == 0).Skip((page-1)*count).Take(count).ToList();
         }
 
         public void AddComment(Comment comment)
         {
-            var service = Get(comment.Service.ID);
+            var service = Get(comment.ServiceID);
             service.Comments.Add(comment);
             dBEntities.Comments.Add(comment);
             dBEntities.SaveChanges();
@@ -49,7 +48,7 @@ namespace SerwisProduktow.Domain.Concrete
 
         public void Remove(int serviceID)
         {
-            var service = Get(serviceID);
+            var service = dBEntities.Services.SingleOrDefault(s => s.ID == serviceID && s.Status == 0);
             service.SetStatus(1);
             Update();
         }

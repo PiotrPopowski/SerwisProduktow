@@ -11,21 +11,35 @@ import { AuthService } from '../auth.service';
 })
 export class ServiceDetailComponent implements OnInit {
   service;
-
+  comments=[];
+  currentPage:number=1
 
   constructor(private servicesService: ServicesService, private route: ActivatedRoute, private _auth : AuthService) { }
 
   ngOnInit() {
     this.getService();
+    this.getComments(1);
   }
   getService(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.servicesService.getService(id)
       .subscribe(service => this.service = service);
   }
+  getComments(page): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.servicesService.getComments(id,page)
+      .subscribe(res => 
+        {
+          if(res.length>0)
+          {
+            this.comments = res;
+            this.currentPage=page;
+          }
+        });
+  }
 
   addNewComment(comment: string) {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.servicesService.addComment(comment, id).subscribe();
+    this.servicesService.addComment(comment, id).subscribe(res=>this.ngOnInit());
   }
 }

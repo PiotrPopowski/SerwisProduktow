@@ -7,6 +7,7 @@ export class ServicesService {
   private _servicesUrl = "http://localhost:63819/api/Service/GetAll";
   private _detailUserUrl = "http://localhost:63819/api/User/Get/";
   private _gettingService = "http://localhost:63819/api/Service/Get/";
+  private _gettingComments = "http://localhost:63819/api/Service/GetComments/";
   private _removeServiceUrl = "http://localhost:63819/api/Service/Remove/"
   private _addingServiceUrl = "http://localhost:63819/api/Service/addService";
   private _addingCommentUrl = "http://localhost:63819/api/Service/AddComment";
@@ -15,6 +16,10 @@ export class ServicesService {
 
   getServices(page) {
     return this.http.get<any>(this._servicesUrl, {params: { page: page, count: "5" }});
+  }
+
+  getComments(id, page) {
+    return this.http.get<any>(this._gettingComments, {params: {serviceID: id, page: page, count: "5" }});
   }
 
   getSpecialservices() {

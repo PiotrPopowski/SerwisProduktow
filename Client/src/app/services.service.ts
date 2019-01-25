@@ -13,8 +13,8 @@ export class ServicesService {
 
   constructor(private http: HttpClient) { }
 
-  getServices() {
-    return this.http.get<any>(this._servicesUrl);
+  getServices(page) {
+    return this.http.get<any>(this._servicesUrl, {params: { page: page, count: "5" }});
   }
 
   getSpecialservices() {

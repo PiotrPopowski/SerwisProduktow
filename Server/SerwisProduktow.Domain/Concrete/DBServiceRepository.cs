@@ -26,12 +26,12 @@ namespace SerwisProduktow.Domain.Concrete
 
         public IEnumerable<Service> GetAll(int page, int count=10)
         {
-            return dBEntities.Services.OrderBy(s => s.DateOfAddition).Where(x => x.Status == 0).Skip((page -1)*count).ToList();
+            return dBEntities.Services.OrderBy(s => s.DateOfAddition).Where(x => x.Status == 0).Skip((page -1)*count).Take(count);
         }
 
         public IEnumerable<Service> GetAllUserServices(int id, int page, int count=10)
         {
-            return dBEntities.Services.OrderBy(s => s.DateOfAddition).Where(x => x.User.ID == id && x.Status == 0).Skip((page-1)*count).ToList();
+            return dBEntities.Services.OrderBy(s => s.DateOfAddition).Where(x => x.User.ID == id && x.Status == 0).Skip((page-1)*count).Take(count);
         }
 
         public IEnumerable<Comment> GetComments(int serviceID)

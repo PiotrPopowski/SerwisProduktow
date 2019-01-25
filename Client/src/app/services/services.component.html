@@ -12,4 +12,22 @@
         <button (click)='remove(event.ID)'>Usuń</button>
       </div>
     </div>
+    <div class="row col-md-5">
+    <div aria-label="..." class="mx-auto">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link" *ngIf="currentPage!=1" (click)='getServices(currentPage-1)'>{{currentPage-1}}</button>
+        </li>
+        <li class="page-item active">
+          <button class="page-link">{{currentPage}}</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)='getServices(currentPage+1)'>{{currentPage+1}}</button>
+        </li>
+        <li class="page-item">
+            <button class="page-link" (click)='getServices(currentPage+2)' *ngIf="currentPage==1">{{currentPage+2}}</button>
+          </li>
+      </ul>
+    </div>
+  </div>
 </div>

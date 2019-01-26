@@ -16,6 +16,7 @@ namespace SerwisProduktow.Domain.Concrete
 
         public void Add(Service service)
         {
+            
             dBEntities.Services.Add(service);
             dBEntities.SaveChanges();
         }
@@ -36,9 +37,19 @@ namespace SerwisProduktow.Domain.Concrete
             }
         }
 
+        public IEnumerable<Service> GetTop(int count, string category)
+        {
+            return dBEntities.Services.OrderByDescending(s => s.Rating).Where(x => x.Category.NameOfCategory == category).Take(count).Take(count).ToList();
+        }
+
         public IEnumerable<Service> GetAllUserServices(int id, int page, int count=10)
         {
             return dBEntities.Services.OrderByDescending(s => s.DateOfAddition).Where(x => x.User.ID == id && x.Status == 0).Skip((page-1)*count).Take(count).ToList();
+        }
+
+        public IEnumerable<Service> GetAllUserTwo(int id)
+        {
+            return dBEntities.Services.Where(x => x.User.ID == id && x.Status == 0).ToList();
         }
 
         public void AddComment(Comment comment)

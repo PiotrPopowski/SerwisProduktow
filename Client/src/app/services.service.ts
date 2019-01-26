@@ -7,6 +7,7 @@ export class ServicesService {
   private _servicesUrl = "http://localhost:63819/api/Service/GetAll";
   private _detailUserUrl = "http://localhost:63819/api/User/Get/";
   private _gettingService = "http://localhost:63819/api/Service/Get/";
+  private _gettingImage = "http://localhost:63819/api/File/GetImage";
   private _gettingComments = "http://localhost:63819/api/Service/GetComments/";
   private _removeServiceUrl = "http://localhost:63819/api/Service/Remove/"
   private _addingServiceUrl = "http://localhost:63819/api/Service/addService";
@@ -28,6 +29,10 @@ export class ServicesService {
 
   getService(id: number) {
     return this.http.get<any>(this._gettingService + id);
+  }
+
+  getImage(name){
+    return this.http.get<any>(this._gettingImage, { params: { name: name } });
   }
 
   addService(service) {

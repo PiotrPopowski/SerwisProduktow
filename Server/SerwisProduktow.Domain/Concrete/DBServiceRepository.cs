@@ -28,9 +28,12 @@ namespace SerwisProduktow.Domain.Concrete
             }
         }
 
-        public IEnumerable<Service> GetAll(int page, int count=10)
+        public IEnumerable<Service> GetAll(int page, int count = 10)
         {
-            return dBEntities.Services.OrderByDescending(s => s.DateOfAddition).Where(x => x.Status == 0).Skip((page -1)*count).Take(count).ToList();
+            using (var dBEntities = new DBEntities())
+            {
+                return dBEntities.Services.Include("User").Include("Rating").Include("Category").OrderByDescending(s => s.DateOfAddition).Where(x => x.Status == 0).Skip((page - 1) * count).Take(count).ToList();
+            }
         }
 
         public IEnumerable<Service> GetAllUserServices(int id, int page, int count=10)

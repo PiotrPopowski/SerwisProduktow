@@ -13,7 +13,7 @@ export class ServiceDetailComponent implements OnInit {
   service;
   comments=[];
   currentPage:number=1
-
+  
   constructor(private servicesService: ServicesService, private route: ActivatedRoute, private _auth : AuthService) { }
 
   ngOnInit() {

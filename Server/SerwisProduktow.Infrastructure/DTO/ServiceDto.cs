@@ -14,5 +14,6 @@ namespace SerwisProduktow.Infrastructure.DTO
         public RatingDto Rating { get; set; }
         public IEnumerable<CommentDto> Comments { get; set; }
         public string ServiceName { get; set; }
+        public string ImageName { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace SerwisProduktow.Domain.Entities
         public int Status { get; protected set; }
         public DateTime DateOfAddition { get; protected set; }
         public string ServiceName { get; protected set; }
+        public string ImageName { get; protected set; }
         public virtual User User { get; protected set; }
         public virtual Category_Services Category { get; protected set; }
         public virtual Rating Rating { get; protected set; }
@@ -23,12 +24,13 @@ namespace SerwisProduktow.Domain.Entities
         {
 
         }
-        public Service(User user, Category_Services category, string servicename, Rating rating, string descryption)
+        public Service(User user, Category_Services category, string servicename, string imageName, Rating rating, string descryption)
         {
             User = user;
             SetCategory(category);
             SetDescryption(descryption);
             SetServiceName(servicename);
+            SetImageName(imageName);
             SetStatus(0);
             Rating = rating;
             Comments = new HashSet<Comment>();
@@ -58,6 +60,10 @@ namespace SerwisProduktow.Domain.Entities
             if (servicename.Length < 4) throw new WojtekException(WojtekCodes.ShorServiceName);
             if (servicename.Length > 100) throw new WojtekException(WojtekCodes.LongServiceName);
             ServiceName = servicename;
+        }
+        public void SetImageName(string image)
+        {
+            ImageName = image;
         }
     }
 }

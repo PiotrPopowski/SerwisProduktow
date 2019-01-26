@@ -8,6 +8,8 @@ using SerwisProduktow.Domain.Repositories;
 using SerwisProduktow.Infrastructure.DTO;
 using SerwisProduktow.Domain.Exceptions;
 using SerwisProduktow.Infrastructure.ViewModels;
+using System.IO;
+using SerwisProduktow.Infrastructure.Models;
 
 namespace SerwisProduktow.Infrastructure.Repositories
 {
@@ -27,7 +29,9 @@ namespace SerwisProduktow.Infrastructure.Repositories
             if (user == null) throw new WojtekException(WojtekCodes.UserNotFound);
             if (category == null) throw new WojtekException(WojtekCodes.CategoryNotFound);
 
-            var newService = new Service(user, category, service.Name, rating, service.Descryption);
+            string filename =ImageHelper.WriteImage(service.Image, ProjectLocation.Get + @"\Images");
+
+            var newService = new Service(user, category, service.Name, filename.Replace('.',';'), rating, service.Descryption);
             services.Add(newService);
         }
 

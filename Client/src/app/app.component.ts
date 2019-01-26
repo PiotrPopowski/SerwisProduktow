@@ -8,5 +8,5 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private _authService: AuthService){}
+  constructor(private _authService: AuthService){window.onbeforeunload = _authService.logoutUser}
 }

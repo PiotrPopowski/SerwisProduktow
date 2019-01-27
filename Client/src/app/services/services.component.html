@@ -1,0 +1,33 @@
+<div class="list-group">
+  <div *ngFor="let event of services">
+  <a href="/service/{{event.ID}}" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"></h5>
+        <small>{{event.DateOfAddition | date:"dd/MM/yyyy 'o godz.' HH:mm"}}</small>
+      </div>
+      <p class="mb-1">{{event.ServiceName}}</p>
+      <small>Dodane przez <a href="/user/{{event.User.ID}}">{{event.User.UserName}}</a></small>
+    </a>
+      <div *ngIf="event.User.ID == helpers.localStorageItem('UserID')">
+        <button (click)='remove(event.ID)'>Usuń</button>
+      </div>
+    </div>
+    <div class="row col-md-5">
+    <div aria-label="..." class="mx-auto">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link" *ngIf="currentPage!=1" (click)='getServices(currentPage-1)'>{{currentPage-1}}</button>
+        </li>
+        <li class="page-item active">
+          <button class="page-link">{{currentPage}}</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)='getServices(currentPage+1)'>{{currentPage+1}}</button>
+        </li>
+        <li class="page-item">
+            <button class="page-link" (click)='getServices(currentPage+2)' *ngIf="currentPage==1">{{currentPage+2}}</button>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>

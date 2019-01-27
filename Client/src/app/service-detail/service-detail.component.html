@@ -7,7 +7,25 @@
         <span class="badge">Dodane: {{service.DateOfAddition | date:'dd.MM.yyyy'}} przez <a href="user/{{service.User.ID}}">{{service.User.UserName}}</a></span>
         <div>
           <span class="badge badge-info">{{service.Category.Name}}</span>
-        </div>  
+        </div>
+        <div *ngIf="_auth.loggedIn()">
+        <h3 class="bold padding-bottom-7">Ocena: <small>{{service.Rating.AvarageOfVotes}}/ 5</small></h3>
+					<button type="button" (click)='vote(1)' class="btn btn-danger btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true">1</span>
+					</button>
+          <button type="button" (click)='vote(2)' class="btn btn-danger btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true">2</span>
+          </button>
+          <button type="button" (click)='vote(3)' class="btn btn-warning btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true">3</span>
+          </button>
+          <button type="button" (click)='vote(4)' class="btn btn-warning btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true">4</span>
+          </button>
+          <button type="button" (click)='vote(5)' class="btn btn-success btn-sm" aria-label="Left Align">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true">5</span>
+          </button>
+          </div>
       </div>
       <br><br><br>
       <div class="mt-5 col-sm-10">

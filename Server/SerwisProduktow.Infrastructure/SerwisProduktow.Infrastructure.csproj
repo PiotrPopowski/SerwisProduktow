@@ -140,6 +140,7 @@
     <Compile Include="Services\IJwtHandler.cs" />
     <Compile Include="Services\JwtHandler.cs" />
     <Compile Include="ViewModels\CommentModel.cs" />
+    <Compile Include="ViewModels\RatingModel.cs" />
     <Compile Include="ViewModels\UserModel.cs" />
     <Compile Include="ViewModels\ServiceModel.cs" />
   </ItemGroup>

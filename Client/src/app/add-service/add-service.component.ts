@@ -26,14 +26,22 @@ export class AddServiceComponent implements OnInit {
 
   onImageSet(event){
     this.imageData=event.target.files[0];
+    document.getElementById('fileSize').innerHTML = "Rozmiar pliku: " + (this.imageData.size / 1000000) + " mb";
   }
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
            this.image= btoa(binaryString);
            console.log(btoa(binaryString));
    }
+   checkImageSize() {
+    if (this.imageData.size > 3000000) {
+      this.showError("Zbyt duży plik!");
+      return false;
+    }
+    return true;
+   }
   addNewService () {
-
+   if (this.checkImageSize()) {
     var file:File = this.imageData;
   var myReader:FileReader = new FileReader();
 
@@ -48,7 +56,7 @@ export class AddServiceComponent implements OnInit {
         document.getElementById('serviceDesc').focus();}
         ) 
       }
-      myReader.readAsDataURL(file);
+      myReader.readAsDataURL(file); }
   }
 
 }

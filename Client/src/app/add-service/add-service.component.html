@@ -28,8 +28,10 @@
               <input id="serviceDesc" type="text" class="form-control rounded-0" [(ngModel)]="serviceData.Descryption" name="Opis" required>
             </div>
             <div class="form-group">
-              <input id="imageFile" type="file" class="form-control rounded-0" (change)="onImageSet($event)" name="Obrazek">
+              <label>Obraz <small>(max 3mb)</small></label>
+              <input id="imageFile" type="file" accept="image/png" class="form-control rounded-0" (change)="onImageSet($event)" name="Obrazek">
             </div>
+            <div class="fileSize" id="fileSize"></div>
             <div class="form-group">
               <label>Kategoria</label>
               <select class="form-control" name="Category" [(ngModel)]="serviceData.CategoryID">

@@ -27,7 +27,8 @@
           </button>
           </div>
       </div>
-      <br><br><br>
+      <br><br><br><br>
+      <div class id="serviceDetailError" class="error"></div>
       <div class="mt-5 col-sm-10">
       <div *ngIf="!_auth.loggedIn()">
         Komentować i oceniać mogą tylko zalogowani użytkownicy!
@@ -35,7 +36,7 @@
       <div *ngIf="_auth.loggedIn()">
       Komentarz:
         <form>
-        <textarea class="form-control" ref-textarea name="commentData" id="addComment" rows="3"></textarea>
+        <textarea class="form-control" onfocus="this.value=''" ref-textarea name="commentData" id="addComment" rows="3"></textarea>
         <button (click)='addNewComment(textarea.value)' class="btn btn-success float-right">Skomentuj</button>
         </form>
     </div>

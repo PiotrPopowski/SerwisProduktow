@@ -44,7 +44,7 @@ namespace SerwisProduktow.Domain.Entities
         public void SetDescryption(string descryption)
         {
             if (descryption.Length < 50) throw new WojtekException(WojtekCodes.ShortDescryption);
-            if (descryption.Length > 250) throw new WojtekException(WojtekCodes.LongDescryption);
+            if (descryption.Length > 25000) throw new WojtekException(WojtekCodes.LongDescryption);
             Descryption = descryption;
         }
         public void SetCategory(Category_Services category)

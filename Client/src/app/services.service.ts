@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Injectable()
 export class ServicesService {
@@ -12,6 +13,7 @@ export class ServicesService {
   private _removeServiceUrl = "http://localhost:63819/api/Service/Remove/"
   private _addingServiceUrl = "http://localhost:63819/api/Service/addService";
   private _addingCommentUrl = "http://localhost:63819/api/Service/AddComment";
+  private _addingRattingUrl = "http://localhost:63819/api/Service/Vote";
 
   constructor(private http: HttpClient) { }
 
@@ -38,6 +40,10 @@ export class ServicesService {
   addService(service) {
     service.UserID=+localStorage.getItem('UserID');
     return this.http.post<any>(this._addingServiceUrl, service, { withCredentials: true });
+  }
+
+  addRating(rating){
+    return this.http.post<any>(this._addingRattingUrl, rating, {withCredentials: true})
   }
 
   addComment(content, serviceID){

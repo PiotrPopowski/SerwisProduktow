@@ -89,5 +89,12 @@ namespace SerwisProduktow.Domain.Concrete
         {
             dBEntities.SaveChanges();
         }
+
+        public void AddVote(Service service, int userID, int rate)
+        {
+            this.dBEntities.Ratings.FirstOrDefault(x => x.ID == service.Rating.ID)
+                .AddVote(userID, rate);
+            dBEntities.SaveChanges();
+        }
     }
 }

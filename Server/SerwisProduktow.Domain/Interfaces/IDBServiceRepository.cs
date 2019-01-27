@@ -14,6 +14,7 @@ namespace SerwisProduktow.Domain.Repositories
         Category_Services GetCategory(int categoryID);
         void Add(Service service);
         void AddComment(Comment comment);
+        void AddVote(Service service, int userID, int rate);
         void Remove(int serviceID);
         void Update();
         Rating CreateRating();

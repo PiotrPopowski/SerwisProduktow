@@ -90,8 +90,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
         public void Vote(int userID, int rate, int serviceID)
         {
             var service = services.Get(serviceID);
-            service.Rating.AddVote(rate);
-            services.Update();
+            services.AddVote(service, userID, rate);
         }
 
         public void SetCategory(int serviceID, int categoryID)

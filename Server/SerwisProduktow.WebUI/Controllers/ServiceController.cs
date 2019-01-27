@@ -70,10 +70,13 @@ namespace SerwisProduktow.WebUI.Controllers
             var service = serviceRepository.Get(id);
             return Ok(service);
         }
-
-        public void Vote(int userID, int rate, int serviceID)
+        [Route("api/Service/Vote")]
+        [HttpPost]
+        public IHttpActionResult Vote([FromBody]RatingModel rating)
         {
-            serviceRepository.Vote(userID, rate, serviceID);
+            int userID = int.Parse(User?.Identity?.Name);
+            serviceRepository.Vote(userID, rating.Rate, rating.ServiceID);
+            return Ok();
         }
 
         [HttpDelete]

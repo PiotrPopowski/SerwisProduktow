@@ -33,5 +33,7 @@ namespace SerwisProduktow.Domain.Exceptions
         public static string LongServiceName => "Zbyt dluga nazwa usługi! (max 20 znaków)";
         public static string PermissionDenied => "Nie masz uprawnień do tego zasobu.";
         public static string ActiveName => "Masz już produkt o takiej nazwie!";
+        public static string UserVoted => "Użytkownik już wystawił ocenę dla tego produktu.";
+        public static string WrongRating => "Podana wartość oceny jest nieprawidłowa.";
     }
 }

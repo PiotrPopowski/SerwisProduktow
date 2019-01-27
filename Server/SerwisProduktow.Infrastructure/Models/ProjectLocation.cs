@@ -8,6 +8,6 @@ namespace SerwisProduktow.Infrastructure.Models
 {
     public static class ProjectLocation
     {
-        public static string Get => @"D:\Work\Projects\Angular\TASTlast\tutaj\SerwisProduktow\Server";
+        public static string Get => @"C:\Users\ppopo\Desktop\TAS\SerwisProduktow\SerwisProduktow\SerwisProduktow\Server";
     }
 }

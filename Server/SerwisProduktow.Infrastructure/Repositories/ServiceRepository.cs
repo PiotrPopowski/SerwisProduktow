@@ -33,8 +33,7 @@ namespace SerwisProduktow.Infrastructure.Repositories
             {
                 if (s.ServiceName == service.Name) throw new WojtekException(WojtekCodes.ActiveName);
             }
-
-            string filename =ImageHelper.WriteImage(service.Image, ProjectLocation.Get + @"\Images");
+            string filename = ImageHelper.WriteImage(service.Image, ProjectLocation.Get + @"\Images");
             var newService = new Service(user, category, service.Name, filename.Replace('.',';'), rating, service.Descryption);
             
             services.Add(newService);

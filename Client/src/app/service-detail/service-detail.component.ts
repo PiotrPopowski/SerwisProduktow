@@ -46,12 +46,18 @@ export class ServiceDetailComponent implements OnInit {
     this.servicesService.addRating(this.rating)
         .subscribe(
           res=>this.ngOnInit(),
-          err=>alert(err.error)
+          err=>this.showError(err.error)
           );
+  }
+
+  showError(error: string) {
+    document.getElementById('serviceDetailError').innerHTML = error;
   }
 
   addNewComment(comment: string) {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.servicesService.addComment(comment, id).subscribe(res=>this.ngOnInit());
+    this.servicesService.addComment(comment, id).subscribe(res=>this.ngOnInit(), err=>{this.showError(err.error);
+                                                                                        document.getElementById('addComment').focus()});
+                                                                                        document.getElementById('addComment').focus();
   }
 }

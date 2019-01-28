@@ -27,18 +27,18 @@
               <label>Opis Produktu</label>
               <input id="serviceDesc" type="text" class="form-control rounded-0" [(ngModel)]="serviceData.Descryption" name="Opis" required>
             </div>
-            <div class="form-group">
-              <label>Obraz <small>(max 3mb)</small></label>
-              <input id="imageFile" type="file" accept=".png, .jpg, .jpeg" class="form-control rounded-0" (change)="onImageSet($event)" name="Obrazek">
-            </div>
-            <div class="fileSize" id="fileSize"></div>
-            <div class="form-group">
+             <div class="form-group">
               <label>Kategoria</label>
               <select class="form-control" name="Category" [(ngModel)]="serviceData.CategoryID">
                 <option [ngValue]="1">Ubrania</option>
                 <option [ngValue]="2">Inne</option>
               </select>
             </div>
+            <div class="form-group">
+              <label>Obraz <small>(max 3mb)</small></label>
+              <input id="imageFile" type="file" accept=".png, .jpg, .jpeg" class="form-control rounded-0" (change)="onImageSet($event)" name="Obrazek">
+            </div>
+            <div class="fileSize" id="fileSize"></div>
             <div class="error"  id="error"></div>
             <button type="button" (click)="addNewService()" class="btn btn-success float-right">Dodaj Produkt</button>
           </form>

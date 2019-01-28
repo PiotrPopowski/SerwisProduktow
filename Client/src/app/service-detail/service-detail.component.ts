@@ -58,5 +58,6 @@ export class ServiceDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.servicesService.addComment(comment, id).subscribe(res=>this.ngOnInit(), err=>{this.showError(err.error);
                                                                                         document.getElementById('addComment').focus()});
+                                                                                        document.getElementById('addComment').focus();
   }
 }
